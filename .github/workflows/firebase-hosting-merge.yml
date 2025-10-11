@@ -12,12 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm ci
-      - run: build
+      - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEVCOBOS_PORTFOLIO_DOCS }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEVCOBOS_DOCS }}
           channelId: live
-          projectId: devcobos-portfolio-docs
+          projectId: devcobos-docs
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
