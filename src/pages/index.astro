@@ -1,25 +1,32 @@
 ---
-import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+import { ModeToggle } from "@/components/ModeToogle";
+import { Button } from "@/components/ui/button";
+import "/src/styles/global.css";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro + TailwindCSS</title>
+  </head>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
+  <body>
+    <h1>Astro</h1>
+
+    <div
+      class="flex h-screen flex-col items-center justify-center gap-2 font-mono"
+    >
+      <Button>Button in Astro!</Button>
+      <ModeToggle client:load />
+      <p>
+        Test Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
+        repudiandae tempore. Qui voluptatibus consectetur alias? Iste, sapiente?
+        Quam officia, eum impedit sapiente culpa earum consequuntur
+        exercitationem, dolore unde ut reprehenderit!
+      </p>
+    </div>
+  </body>
 </html>
