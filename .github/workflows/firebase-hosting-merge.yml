@@ -9,6 +9,9 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://devcobos-docs.web.app
     steps:
       - uses: actions/checkout@v4
       - run: npm ci
