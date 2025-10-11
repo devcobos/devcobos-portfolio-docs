@@ -1,36 +1,24 @@
 // src/components/NavigationMenuWrapper.jsx
+import { NavigationLink } from "@/components/ui/navigation-link";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import { NAVIGATION_ITEMS } from "@/constants/navigation";
 
 export default function NavigationMenuWrapper() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <a href="/" className="px-4 py-2">
-              Home
-            </a>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <a href="/docs" className="px-4 py-2">
-              Docs
-            </a>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <a href="/about" className="px-4 py-2">
-              About
-            </a>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
+        {NAVIGATION_ITEMS.map((item) => (
+          <NavigationMenuItem key={item.href}>
+            <NavigationMenuLink asChild>
+              <NavigationLink href={item.href}>{item.label}</NavigationLink>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        ))}
       </NavigationMenuList>
     </NavigationMenu>
   );
