@@ -1,0 +1,52 @@
+---
+// src/components/MarkdownContent.astro
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    // Base prose
+    "prose prose-neutral dark:prose-invert prose-lg",
+
+    // Headings
+    "prose-headings:font-semibold prose-headings:tracking-tight",
+
+    // Links
+    "prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline",
+
+    // Strong/Bold
+    "prose-strong:font-semibold",
+
+    // Code inline
+    "prose-code:text-primary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-sm prose-code:font-medium prose-code:before:content-none prose-code:after:content-none",
+
+    // Code blocks
+    "prose-pre:border prose-pre:border-border prose-pre:rounded-lg",
+
+    // Blockquotes
+    "prose-blockquote:border-l-primary prose-blockquote:bg-muted/50 prose-blockquote:py-1 prose-blockquote:not-italic",
+
+    // Lists
+    "prose-li:marker:text-primary",
+
+    // Tables
+    "prose-table:border prose-table:border-border",
+    "prose-thead:bg-muted",
+    "prose-th:border prose-th:border-border prose-th:px-4 prose-th:py-2",
+    "prose-td:border prose-td:border-border prose-td:px-4 prose-td:py-2",
+
+    // Images
+    "prose-img:rounded-lg prose-img:border prose-img:border-border",
+
+    // Horizontal rules
+    "prose-hr:border-border",
+
+    className,
+  ]}
+>
+  <slot />
+</div>
