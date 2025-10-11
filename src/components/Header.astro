@@ -3,7 +3,10 @@ import { ButtonThemeToggle } from "@/components/ui/button-theme-toogle";
 import NavigationMenuWrapper from "@/components/ui/navigation-menu-wrapper";
 ---
 
-<header class="bg-background border-border sticky top-0 z-50 border-b">
+<header
+  transition:persist
+  class="bg-background border-border sticky top-0 z-50 border-b"
+>
   <nav class="mx-auto flex h-14 max-w-4xl items-center justify-between px-4">
     <div class="text-lg font-semibold">DevCobos</div>
     <div class="flex items-center gap-4">

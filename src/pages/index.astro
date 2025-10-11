@@ -1,109 +1,173 @@
 ---
-import Header from "@/components/Header.astro";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Layout from "@/layouts/Layout.astro";
 import "/src/styles/global.css";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>DevCobos</title>
-
-    <!-- Initialize theme -->
-    <script is:inline>
-      (function () {
-        const stored = localStorage.getItem("selected_theme");
-        const theme =
-          stored ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark");
-        }
-
-        localStorage.setItem("selected_theme", theme);
-      })();
-    </script>
-  </head>
-
-  <body class="font-mono">
-    <Header />
-
-    <main
-      class="mx-auto flex max-w-full flex-col items-center gap-6 px-4 py-6 shadow-md"
+<Layout>
+  <main class="mx-auto max-w-7xl px-4 py-3">
+    <!-- Bento Grid Container -->
+    <div
+      class="grid auto-rows-[minmax(200px,auto)] grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
     >
-      <Button>Button in Astro!</Button>
-
-      <Card className="w-full max-w-sm">
+      <!-- Presentación - Grande horizontal -->
+      <Card className="md:col-span-2 lg:col-span-2 lg:row-span-1">
         <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
-          <CardAction>Card Action</CardAction>
+          <CardTitle>Presentación</CardTitle>
+          <CardDescription>Bienvenido a nuestro proyecto</CardDescription>
         </CardHeader>
         <CardContent>
           <p>
-            Test Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Quasi, repudiandae tempore. Qui voluptatibus consectetur alias?
-            Iste, sapiente? Quam officia, eum impedit sapiente culpa earum
-            consequuntur exercitationem, dolore unde ut reprehenderit!
+            Este es un diseño tipo bento grid moderno y atractivo para organizar
+            contenido de forma visual.
           </p>
         </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
       </Card>
 
-      <Card className="w-full max-w-sm">
+      <!-- Tenemos Docs -->
+      <Card className="md:col-span-1 lg:col-span-1 lg:row-span-1">
         <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
-          <CardAction>Card Action</CardAction>
+          <CardTitle>Tenemos Docs</CardTitle>
+          <CardDescription>Documentación completa</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p>Accede a toda la documentación del proyecto.</p>
+        </CardContent>
+      </Card>
+
+      <!-- Card alta derecha -->
+      <Card className="flex flex-col md:col-span-1 lg:col-span-1 lg:row-span-2">
+        <CardHeader>
+          <CardTitle>Recursos</CardTitle>
+          <CardDescription>Todo lo que necesitas</CardDescription>
+        </CardHeader>
+        <CardContent className="flex-1">
+          <p>
+            Herramientas, guías, tutoriales y más contenido útil para tu
+            desarrollo.
+          </p>
+          <div class="mt-4 space-y-2">
+            <div class="bg-secondary rounded p-2">Tutorial 1</div>
+            <div class="bg-secondary rounded p-2">Tutorial 2</div>
+            <div class="bg-secondary rounded p-2">Tutorial 3</div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <!-- Vacío - pequeña cuadrada -->
+      <Card
+        className="flex items-center justify-center md:col-span-1 lg:col-span-1 lg:row-span-1"
+      >
+        <CardContent className="text-center">
+          <p class="mb-2 text-6xl">📦</p>
+          <p class="font-semibold">vacío</p>
+        </CardContent>
+      </Card>
+
+      <!-- Card mediana horizontal -->
+      <Card className="md:col-span-2 lg:col-span-2 lg:row-span-1">
+        <CardHeader>
+          <CardTitle>Estadísticas</CardTitle>
+          <CardDescription>Métricas del proyecto</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div class="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p class="text-3xl font-bold">1.2K</p>
+              <p class="text-sm text-slate-500">Usuarios</p>
+            </div>
+            <div>
+              <p class="text-3xl font-bold">450</p>
+              <p class="text-sm text-slate-500">Proyectos</p>
+            </div>
+            <div>
+              <p class="text-3xl font-bold">98%</p>
+              <p class="text-sm text-slate-500">Satisfacción</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <!-- Card alta izquierda -->
+      <Card className="flex flex-col md:col-span-1 lg:col-span-1 lg:row-span-2">
+        <CardHeader>
+          <CardTitle>Navegación</CardTitle>
+          <CardDescription>Secciones principales</CardDescription>
+        </CardHeader>
+        <CardContent className="flex-1">
+          <nav class="space-y-3">
+            <Button className="w-full">Inicio</Button>
+            <Button className="w-full" variant="outline">Proyectos</Button>
+            <Button className="w-full" variant="outline">Equipo</Button>
+            <Button className="w-full" variant="outline">Contacto</Button>
+          </nav>
+        </CardContent>
+      </Card>
+
+      <!-- Card mediana horizontal -->
+      <Card className="md:col-span-2 lg:col-span-2 lg:row-span-1">
+        <CardHeader>
+          <CardTitle>Últimas Novedades</CardTitle>
+          <CardDescription>Mantente actualizado</CardDescription>
         </CardHeader>
         <CardContent>
           <p>
-            Test Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Quasi, repudiandae tempore. Qui voluptatibus consectetur alias?
-            Iste, sapiente? Quam officia, eum impedit sapiente culpa earum
-            consequuntur exercitationem, dolore unde ut reprehenderit!
+            Nuevas características añadidas al proyecto. Sistema de
+            notificaciones mejorado y mejor rendimiento general.
           </p>
         </CardContent>
         <CardFooter>
-          <p>Card Footer</p>
+          <Button variant="link">Ver todas las novedades →</Button>
         </CardFooter>
       </Card>
 
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
-          <CardAction>Card Action</CardAction>
-        </CardHeader>
-        <CardContent>
-          <p>
-            Test Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Quasi, repudiandae tempore. Qui voluptatibus consectetur alias?
-            Iste, sapiente? Quam officia, eum impedit sapiente culpa earum
-            consequuntur exercitationem, dolore unde ut reprehenderit!
-          </p>
+      <!-- Card pequeña cuadrada -->
+      <Card
+        className="flex items-center justify-center md:col-span-1 lg:col-span-1 lg:row-span-1"
+      >
+        <CardContent className="text-center">
+          <p class="mb-2 text-6xl">⚡</p>
+          <p class="font-semibold">Rápido</p>
         </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
       </Card>
-    </main>
-  </body>
-</html>
+
+      <!-- Card pequeña cuadrada -->
+      <Card
+        className="flex items-center justify-center md:col-span-1 lg:col-span-1 lg:row-span-1"
+      >
+        <CardContent className="text-center">
+          <p class="mb-2 text-6xl">🎨</p>
+          <p class="font-semibold">Diseño</p>
+        </CardContent>
+      </Card>
+
+      <!-- Card pequeña cuadrada -->
+      <Card
+        className="flex items-center justify-center md:col-span-1 lg:col-span-1 lg:row-span-1"
+      >
+        <CardContent className="text-center">
+          <p class="mb-2 text-6xl">🔒</p>
+          <p class="font-semibold">Seguro</p>
+        </CardContent>
+      </Card>
+
+      <!-- Card pequeña cuadrada -->
+      <Card
+        className="flex items-center justify-center md:col-span-1 lg:col-span-1 lg:row-span-1"
+      >
+        <CardContent className="text-center">
+          <p class="mb-2 text-6xl">🤖</p>
+          <p class="font-semibold">Terminator</p>
+        </CardContent>
+      </Card>
+    </div>
+  </main>
+</Layout>
