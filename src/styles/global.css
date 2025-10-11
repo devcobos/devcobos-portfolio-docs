@@ -141,3 +141,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Styles Markdown */
+@layer utilities {
+  /* Inline code */
+  .prose :not(pre) > code {
+    @apply bg-muted rounded px-1 text-sm;
+  }
+
+  .prose :not(pre) > code::before,
+  .prose :not(pre) > code::after {
+    content: none !important;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
+}

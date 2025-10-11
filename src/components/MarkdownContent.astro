@@ -8,42 +8,27 @@ const { class: className } = Astro.props;
 ---
 
 <div
+  id="markdown-content"
   class:list={[
     // Base prose
-    "prose prose-neutral dark:prose-invert prose-lg",
+    "prose dark:prose-invert prose-lg",
 
     // Headings
-    "prose-headings:font-semibold prose-headings:tracking-tight",
+    "prose-headings:font-bold prose-headings:tracking-tight",
+    "prose-h1:text-4xl prose-h1:mb-8 prose-h1:mt-12 prose-h1:pb-4 prose-h1:border-b prose-h1:border-border",
+    "prose-h2:text-3xl prose-h2:mb-6 prose-h2:mt-10 prose-h2:pb-3 prose-h2:border-b prose-h2:border-border",
+    "prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-8",
+    "prose-h4:text-xl prose-h4:mb-3 prose-h4:mt-6",
 
-    // Links
-    "prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline",
+    // // Inline code
+    // "prose-code:text-primary",
+    // "prose-code:px-1.5 prose-code:py-0.5",
 
-    // Strong/Bold
-    "prose-strong:font-semibold",
-
-    // Code inline
-    "prose-code:text-primary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-sm prose-code:font-medium prose-code:before:content-none prose-code:after:content-none",
-
-    // Code blocks
-    "prose-pre:border prose-pre:border-border prose-pre:rounded-lg",
-
-    // Blockquotes
-    "prose-blockquote:border-l-primary prose-blockquote:bg-muted/50 prose-blockquote:py-1 prose-blockquote:not-italic",
-
-    // Lists
-    "prose-li:marker:text-primary",
-
-    // Tables
-    "prose-table:border prose-table:border-border",
-    "prose-thead:bg-muted",
-    "prose-th:border prose-th:border-border prose-th:px-4 prose-th:py-2",
-    "prose-td:border prose-td:border-border prose-td:px-4 prose-td:py-2",
-
-    // Images
-    "prose-img:rounded-lg prose-img:border prose-img:border-border",
-
-    // Horizontal rules
-    "prose-hr:border-border",
+    // // Blockquotes
+    "prose-blockquote:border-l-4 prose-blockquote:border-l-primary",
+    "prose-blockquote:bg-muted/30 prose-blockquote:py-0.5 prose-blockquote:px-6",
+    "prose-blockquote:rounded-r-lg prose-blockquote:font-mono-italic",
+    "prose-blockquote:text-foreground/90",
 
     className,
   ]}

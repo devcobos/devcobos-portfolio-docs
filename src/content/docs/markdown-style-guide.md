@@ -34,7 +34,7 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 ### Syntax
 
-```markdown
+```markdown title="example.md"
 ![Alt text](./full/or/relative/path/of/image)
 ```
 
@@ -50,7 +50,7 @@ The blockquote element represents content that is quoted from another source, op
 
 #### Syntax
 
-```markdown
+```markdown title="example.md"
 > Tiam, ad mint andaepu dandae nostion secatur sequo quae.  
 > **Note** that you can use _Markdown syntax_ within a blockquote.
 ```
@@ -64,7 +64,7 @@ The blockquote element represents content that is quoted from another source, op
 
 #### Syntax
 
-```markdown
+```markdown title="example.md"
 > Don't communicate by sharing memory, share memory by communicating.<br>
 > — <cite>Rob Pike[^1]</cite>
 ```
@@ -80,9 +80,11 @@ The blockquote element represents content that is quoted from another source, op
 
 ### Syntax
 
-```markdown
+```markdown title="example.md"
 | Italics   | Bold     | Code   |
 | --------- | -------- | ------ |
+| _italics_ | **bold** | `code` |
+| _italics_ | **bold** | `code` |
 | _italics_ | **bold** | `code` |
 ```
 
@@ -91,6 +93,8 @@ The blockquote element represents content that is quoted from another source, op
 | Italics   | Bold     | Code   |
 | --------- | -------- | ------ |
 | _italics_ | **bold** | `code` |
+| _italics_ | **bold** | `code` |
+| _italics_ | **bold** | `code` |
 
 ## Code Blocks
 
@@ -98,7 +102,7 @@ The blockquote element represents content that is quoted from another source, op
 
 we can use 3 backticks ``` in new line and write snippet and close with 3 backticks on new line and to highlight language specific syntax, write one word of language name after first 3 backticks, for eg. html, javascript, css, markdown, typescript, txt, bash
 
-````markdown
+````markdown title="example.md"
 ```html
 <!doctype html>
 <html lang="en">
@@ -115,7 +119,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 ### Output
 
-```html
+```html title="index.html"
 <!doctype html>
 <html lang="en">
   <head>
@@ -134,7 +138,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 #### Syntax
 
-```markdown
+```markdown title="example.md"
 1. First item
 2. Second item
 3. Third item
@@ -150,7 +154,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 #### Syntax
 
-```markdown
+```markdown title="example.md"
 - List item
 - Another item
 - And another item
@@ -166,7 +170,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 #### Syntax
 
-```markdown
+```markdown title="example.md"
 - Fruit
   - Apple
   - Orange
@@ -190,7 +194,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 ### Syntax
 
-```markdown
+```markdown title="example.md"
 <abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
 
 H<sub>2</sub>O
