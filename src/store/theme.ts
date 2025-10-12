@@ -11,18 +11,15 @@ interface ThemeStore {
 const getInitialTheme = (): Theme => {
   if (typeof window === "undefined") return "light";
 
-  // Primero verifica localStorage
   const savedTheme = localStorage.getItem("selected_theme") as Theme;
   if (savedTheme) {
     return savedTheme;
   }
 
-  // Luego verifica la clase en el DOM
   if (document.documentElement.classList.contains("dark")) {
     return "dark";
   }
 
-  // Por defecto, usa la preferencia del sistema
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     return "dark";
   }
