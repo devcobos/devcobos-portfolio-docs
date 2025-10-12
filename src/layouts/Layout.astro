@@ -4,6 +4,9 @@ import "/src/styles/global.css";
 import Footer from "@/components/Footer.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Analytics from "@vercel/analytics/astro";
+import { BreadcrumbWrapper } from "@/components/breadcrum-wrapper";
+
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -36,6 +39,14 @@ import Analytics from "@vercel/analytics/astro";
 
   <body class="font-mono">
     <Header />
+    {
+      currentPath !== "/" && (
+        <BreadcrumbWrapper
+          className="mx-auto flex h-14 max-w-4xl items-center px-4 pb-4"
+          currentPath={currentPath}
+        />
+      )
+    }
     <slot />
     <Footer />
 

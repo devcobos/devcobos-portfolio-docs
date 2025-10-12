@@ -4,12 +4,210 @@ description: "Lorem ipsum dolor sit amet"
 pubDate: "Jul 08 2022"
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+# Docker en WSL2 sin Docker Desktop
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+## 📋 Información general
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+> **Entorno testeado:** Windows 11 con Ubuntu 24.04 en WSL2  
+> **Última actualización:** Julio 2025
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+Esta guía detalla la instalación y configuración de Docker en WSL2 (Subsistema de Windows para Linux) sin Docker Desktop. Es una alternativa ligera, libre de licencias propietarias y que ofrece mayor control sobre el entorno de desarrollo.
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+**¿Por qué esta configuración?**
+
+- **Docker:** Plataforma para contenedorización que simplifica el desarrollo, despliegue y distribución de aplicaciones
+- **WSL2:** Entorno Linux completo integrado en Windows que permite ejecutar servicios nativos de Linux
+- **Sin Docker Desktop:** Evita dependencias propietarias y mejora el rendimiento
+
+## 1. 🛠️ Instalación de WSL2
+
+Sigue el [manual oficial de instalación de WSL](https://learn.microsoft.com/es-es/windows/wsl/install-manual) para configurar WSL2 en tu sistema.
+
+**Verificar la instalación:**
+
+```shell
+wsl -l -v
+```
+
+> ⚠️ **Importante:** Asegúrate de que tu distribución esté ejecutándose en WSL2 y que tu distribución de Linux (por ejemplo, Ubuntu) está correctamente instalada y activa.
+
+## 2. ⚙️ Configurar WSL para usar systemd y limpiar el $PATH
+
+Para que servicios como Docker se inicien automáticamente al arrancar WSL, necesitas habilitar `systemd`.
+Además, desactivaremos la inclusión automática de rutas de Windows en el `$PATH` de Linux para evitar conflictos entre binarios de ambos entornos.
+
+Desde la terminal de Ubuntu en WSL, ejecuta el siguiente comando:
+
+```bash
+sudo tee /etc/wsl.conf <<EOF
+[boot]
+systemd = true
+[interop]
+appendWindowsPath = false
+EOF
+```
+
+**Aplicar cambios reiniciando WSL:**
+
+```shell
+wsl --shutdown
+```
+
+Al volver a abrir Ubuntu en WSL, `systemd` estará activo y tu entorno Linux no incluirá rutas de Windows por defecto.
+
+## 3. 🐳 Instalación de Docker en Ubuntu
+
+Estos pasos están extraídos de la [documentación oficial de Docker](https://docs.docker.com/engine/install/ubuntu/).
+
+Para instalar Docker, abre la terminal en Ubuntu y ejecuta:
+
+```bash
+sudo apt-get update && sudo apt-get upgrade -y
+
+# Añadir la clave GPG oficial de Docker:
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Agregar el repositorio de Docker:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo \"${UBUNTU_CODENAME:-$VERSION_CODENAME}\") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+# Instalar los paquetes de Docker:
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+Una vez instalado Docker, ejecuta los siguientes comandos para poder usar Docker sin escribir `sudo` cada vez, y para que Docker se inicie automáticamente al arrancar el sistema:
+
+```bash
+# Añadir tu usuario al grupo 'docker':
+sudo usermod -aG docker $USER
+
+# Habilitar Docker con systemd:
+sudo systemctl enable --now docker.service
+```
+
+Para aplicar los cambios, cierra tu sesión de WSL y vuelve a iniciarla ejecutando:
+
+```shell
+wsl --shutdown
+```
+
+Finalmente, verifica que Docker funciona correctamente ejecutando:
+
+```bash
+docker run hello-world
+```
+
+Este comando descargará y ejecutará una imagen de prueba, mostrando un mensaje de confirmación si todo está bien configurado.
+
+## 4. 🌐 Configurar Docker para exponerlo a Windows
+
+Edita el archivo de configuración del daemon de Docker:
+
+```bash
+sudo nano /etc/docker/daemon.json
+```
+
+Añade el siguiente contenido:
+
+```json
+{
+  "hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]
+}
+```
+
+Luego, crea un archivo de sobreescritura para el servicio Docker:
+
+```bash
+sudo mkdir -p /lib/systemd/system/docker.service.d
+sudo nano /lib/systemd/system/docker.service.d/override.conf
+```
+
+Introduce el siguiente contenido:
+
+```conf title="override.conf"
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd
+```
+
+Reinicia los servicios para aplicar los cambios:
+
+```bash
+sudo systemctl daemon-reexec
+sudo systemctl restart docker
+```
+
+Por último, desde Windows, reinicia WSL:
+
+```shell
+wsl --shutdown
+```
+
+## 5. 🎮 Configurar Docker con NVIDIA (Opcional)
+
+> 📚 **Documentación oficial:** [NVIDIA Container Toolkit Installation Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+
+**Agregar repositorio:**
+
+```bash
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+
+**Instalar toolkit:**
+
+```bash
+sudo apt-get update
+export NVIDIA_CONTAINER_TOOLKIT_VERSION=1.17.8-1
+sudo apt-get install -y \
+    nvidia-container-toolkit=${NVIDIA_CONTAINER_TOOLKIT_VERSION} \
+    nvidia-container-toolkit-base=${NVIDIA_CONTAINER_TOOLKIT_VERSION} \
+    libnvidia-container-tools=${NVIDIA_CONTAINER_TOOLKIT_VERSION} \
+    libnvidia-container1=${NVIDIA_CONTAINER_TOOLKIT_VERSION}
+```
+
+**Configurar runtime:**
+
+```bash
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker
+```
+
+**Verificar instalación:**
+
+```bash
+docker run --rm --gpus all nvidia/cuda:12.3.0-base-ubuntu22.04 nvidia-smi
+```
+
+## 6. 💻 Usar Docker CLI en PowerShell de Windows
+
+Para facilitar el uso de Docker desde PowerShell sin instalar los binarios de Docker para Windows, puedes crear una función que redirija los comandos a WSL.
+
+Abre tu perfil de PowerShell ejecutando:
+
+```powershell
+notepad $PROFILE
+```
+
+Añadiremos el siguiente contenido al final de nuestro fichero:
+
+```powershell title="Microsoft.PowerShell_profile.ps1"
+function docker {
+    wsl -d Ubuntu-24.04 -e true >$null 2>&1
+    wsl docker @args
+}
+```
+
+Guarda el archivo, cierra y reinicia PowerShell. Luego, verifica que Docker funciona con:
+
+```shell
+docker --version
+```

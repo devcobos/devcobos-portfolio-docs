@@ -6,13 +6,13 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { NAVIGATION_ITEMS } from "@/constants/navigation";
+import { NAVIGATION_ITEMS_ARRAY } from "@/constants/navigation.constant";
 
 export default function NavigationMenuWrapper() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {NAVIGATION_ITEMS.map((item) => (
+        {NAVIGATION_ITEMS_ARRAY.map((item) => (
           <NavigationMenuItem key={item.href}>
             <NavigationMenuLink asChild>
               <NavigationLink href={item.href}>{item.label}</NavigationLink>
