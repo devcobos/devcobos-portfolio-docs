@@ -16,10 +16,10 @@ export default defineConfig({
   integrations: [
     react(),
     expressiveCode({
-      themes: ["catppuccin-mocha", "everforest-light"],
-      // themeCssSelector: (theme) => {
-      //   return theme.name === "github-dark" ? ".dark" : ":not(.dark)";
-      // },
+      themes: ["slack-ochin", "catppuccin-mocha"],
+      themeCssSelector: (theme) => {
+        return theme.name === "catppuccin-mocha" ? ".dark" : ":root:not(.dark)";
+      },
       useDarkModeMediaQuery: false,
       tabWidth: 2,
       useThemedScrollbars: true,

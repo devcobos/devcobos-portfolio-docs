@@ -11,15 +11,31 @@ interface ThemeStore {
 const getInitialTheme = (): Theme => {
   if (typeof window === "undefined") return "light";
 
+  // Primero verifica localStorage
+  const savedTheme = localStorage.getItem("selected_theme") as Theme;
+  if (savedTheme) {
+    return savedTheme;
+  }
+
+  // Luego verifica la clase en el DOM
   if (document.documentElement.classList.contains("dark")) {
     return "dark";
   }
 
-  return (localStorage.getItem("selected_theme") as Theme) || "light";
+  // Por defecto, usa la preferencia del sistema
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    return "dark";
+  }
+
+  return "light";
 };
 
 const applyTheme = (theme: Theme) => {
-  document.documentElement.classList.toggle("dark", theme === "dark");
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
   localStorage.setItem("selected_theme", theme);
 };
 
