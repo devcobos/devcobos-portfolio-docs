@@ -1,5 +1,5 @@
 ---
-import MarkdownContent from "@/components/MarkdownContent.astro";
+import MarkdownViewer from "@/components/MarkdownViewer.astro";
 import Layout from "@/layouts/Layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 
@@ -17,7 +17,7 @@ const { Content } = await doc.render();
 ---
 
 <Layout title={doc.data.title} description={doc.data.description}>
-  <MarkdownContent class="mx-auto max-w-4xl px-4">
+  <MarkdownViewer markdownContent={doc.body} title={doc.data.title}>
     <Content />
-  </MarkdownContent>
+  </MarkdownViewer>
 </Layout>
