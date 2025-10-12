@@ -142,7 +142,7 @@
   }
 }
 
-/* Styles Markdown */
+/* Fix Styles Markdown */
 @layer utilities {
   /* Inline code */
   .prose :not(pre) > code {
@@ -157,4 +157,12 @@
   .prose pre code {
     @apply bg-transparent p-0;
   }
+}
+
+/* Smooth transition for theme change */
+* {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
