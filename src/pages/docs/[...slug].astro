@@ -1,6 +1,6 @@
 ---
-import MarkdownViewer from "@/components/MarkdownViewer.astro";
-import Layout from "@/layouts/Layout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MarkdownViewer from "@/layouts/MarkdownViewer.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -16,8 +16,8 @@ const doc = Astro.props;
 const { Content } = await doc.render();
 ---
 
-<Layout title={doc.data.title} description={doc.data.description}>
+<BaseLayout title={doc.data.title} description={doc.data.description}>
   <MarkdownViewer markdownContent={doc.body} title={doc.data.title}>
     <Content />
   </MarkdownViewer>
-</Layout>
+</BaseLayout>

@@ -12,17 +12,18 @@ import {
   NAVIGATION_ITEMS_ARRAY,
   type NavigationItem,
 } from "@/constants/navigation.constant";
+import { ChevronsRightIcon } from "lucide-react";
 import React from "react";
 
-interface BreadcrumbWrapperProps {
+interface BreadcrumbsProps {
   className?: string;
   currentPath: string;
 }
 
-export function BreadcrumbWrapper({
+export default function Breadcrumbs({
   className,
   currentPath,
-}: BreadcrumbWrapperProps) {
+}: BreadcrumbsProps) {
   if (!currentPath || currentPath === "/") return null;
 
   const segments = currentPath.split("/").filter(Boolean);
@@ -52,7 +53,9 @@ export function BreadcrumbWrapper({
           </BreadcrumbLink>
         </BreadcrumbItem>
 
-        <BreadcrumbSeparator />
+        <BreadcrumbSeparator>
+          <ChevronsRightIcon />
+        </BreadcrumbSeparator>
 
         {breadcrumbs.map((crumb, index) => {
           const isLast = index === breadcrumbs.length - 1;
@@ -76,7 +79,11 @@ export function BreadcrumbWrapper({
                   </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
-              {!isLast && <BreadcrumbSeparator />}
+              {!isLast && (
+                <BreadcrumbSeparator>
+                  <ChevronsRightIcon />
+                </BreadcrumbSeparator>
+              )}
             </React.Fragment>
           );
         })}

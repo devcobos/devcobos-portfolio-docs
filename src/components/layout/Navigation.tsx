@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { NAVIGATION_ITEMS_ARRAY } from "@/constants/navigation.constant";
 
-export default function NavigationMenuWrapper() {
+export default function Navigation() {
   return (
     <NavigationMenu>
       <NavigationMenuList>

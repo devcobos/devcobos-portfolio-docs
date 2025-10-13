@@ -12,7 +12,7 @@ interface DownloadDropdownProps {
   title: string;
 }
 
-export function DownloadDropdown({
+export default function DownloadDropdown({
   markdownContent,
   title,
 }: DownloadDropdownProps) {

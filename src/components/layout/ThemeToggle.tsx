@@ -3,7 +3,7 @@ import { useThemeStore } from "@/stores/theme.store";
 import { Moon, Sun } from "lucide-react";
 import { useState } from "react";
 
-export function ButtonThemeToggle() {
+export default function ThemeToggle() {
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const [isAnimating, setIsAnimating] = useState(false);
 

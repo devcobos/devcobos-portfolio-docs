@@ -8,8 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import Layout from "@/layouts/Layout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -19,8 +18,8 @@ const docs = (await getCollection("docs")).sort(
 );
 ---
 
-<Layout>
-  <div class="mx-auto max-w-4xl px-4">
+<BaseLayout>
+  <div class="mx-auto mb-8 max-w-4xl px-4">
     <!-- Barra de búsqueda -->
     <div class="mb-4">
       <div class="relative">
@@ -34,7 +33,7 @@ const docs = (await getCollection("docs")).sort(
           id="searchInput"
           type="text"
           placeholder="Buscar por título o tags..."
-          className="peer pl-9"
+          className="peer bg-card pl-9"
         />
       </div>
     </div>
@@ -81,7 +80,7 @@ const docs = (await getCollection("docs")).sort(
         id="prevPage"
         variant="outline"
         size="icon"
-        className="cursor-pointer"
+        className="bg-card cursor-pointer"
       >
         <ChevronLeft size={16} />
       </Button>
@@ -90,7 +89,7 @@ const docs = (await getCollection("docs")).sort(
         id="nextPage"
         variant="outline"
         size="icon"
-        className="cursor-pointer"
+        className="bg-card cursor-pointer"
       >
         <ChevronRight size={16} />
       </Button>
@@ -103,7 +102,7 @@ const docs = (await getCollection("docs")).sort(
       </p>
     </div>
   </div>
-</Layout>
+</BaseLayout>
 
 <script>
   const ITEMS_PER_PAGE = 4;

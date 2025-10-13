@@ -131,7 +131,7 @@ sudo nano /lib/systemd/system/docker.service.d/override.conf
 
 Introduce el siguiente contenido:
 
-```conf title="override.conf"
+```txt title="override.conf"
 [Service]
 ExecStart=
 ExecStart=/usr/bin/dockerd
