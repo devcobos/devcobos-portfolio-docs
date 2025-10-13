@@ -1,4 +1,5 @@
 ---
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
@@ -6,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
@@ -19,21 +22,20 @@ const docs = (await getCollection("docs")).sort(
 <Layout>
   <div class="mx-auto max-w-4xl px-4">
     <!-- Barra de búsqueda -->
-    <div
-      class="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-4 z-10 mb-8 py-4 backdrop-blur"
-    >
+    <div class="mb-4">
       <div class="relative">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Buscar por título o tags..."
-          class="border-input bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full rounded-lg border px-4 py-3 pl-10 focus:border-transparent focus:ring-2 focus:outline-none"
-        />
         <div
-          class="text-muted-foreground pointer-events-none absolute top-1/2 left-3 -translate-y-1/2"
+          class="text-muted-foreground pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-3 peer-disabled:opacity-50"
         >
-          <Search size={20} />
+          <Search className="size-4" />
+          <span class="sr-only">Buscar</span>
         </div>
+        <Input
+          id="searchInput"
+          type="text"
+          placeholder="Buscar por título o tags..."
+          className="peer pl-9"
+        />
       </div>
     </div>
 
@@ -75,21 +77,23 @@ const docs = (await getCollection("docs")).sort(
 
     <!-- Paginación -->
     <div id="pagination" class="mb-8 flex items-center justify-center gap-2">
-      <button
+      <Button
         id="prevPage"
-        class="hover:bg-accent hover:text-accent-foreground border-input bg-background inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50"
+        variant="outline"
+        size="icon"
+        className="cursor-pointer"
       >
         <ChevronLeft size={16} />
-        Anterior
-      </button>
+      </Button>
       <div id="pageInfo" class="text-muted-foreground px-4 py-2 text-sm"></div>
-      <button
+      <Button
         id="nextPage"
-        class="hover:bg-accent hover:text-accent-foreground border-input bg-background inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50"
+        variant="outline"
+        size="icon"
+        className="cursor-pointer"
       >
-        Siguiente
         <ChevronRight size={16} />
-      </button>
+      </Button>
     </div>
 
     <div id="noResults" class="hidden py-12 text-center">
