@@ -1,4 +1,3 @@
-// components/breadcrumb-wrapper.tsx
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -20,12 +19,6 @@ interface BreadcrumbWrapperProps {
   currentPath: string;
 }
 
-type BreadcrumbItemWithNav = NavigationItem & {
-  href: string;
-  name: string;
-  icon: NavigationItem["icon"];
-};
-
 export function BreadcrumbWrapper({
   className,
   currentPath,
@@ -34,21 +27,19 @@ export function BreadcrumbWrapper({
 
   const segments = currentPath.split("/").filter(Boolean);
 
-  const breadcrumbs: BreadcrumbItemWithNav[] = segments.map(
-    (segment, index) => {
-      const href = "/" + segments.slice(0, index + 1).join("/");
+  const breadcrumbs: NavigationItem[] = segments.map((segment, index) => {
+    const href = "/" + segments.slice(0, index + 1).join("/");
+    const navItem = NAVIGATION_ITEMS_ARRAY.find((item) => item.href === href);
 
-      const navItem = NAVIGATION_ITEMS_ARRAY.find((item) => item.href === href);
-
-      return {
+    return (
+      navItem ?? {
         href,
-        label: navItem?.label ?? segment,
-        icon: navItem?.icon ?? DEFAULT_FILE_MARKDOWN_ICON,
-        name:
-          navItem?.label ?? segment.charAt(0).toUpperCase() + segment.slice(1),
-      } as BreadcrumbItemWithNav;
-    },
-  );
+        label:
+          segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " "),
+        icon: DEFAULT_FILE_MARKDOWN_ICON,
+      }
+    );
+  });
 
   const HomeIcon = NAVIGATION_ITEMS.home.icon;
 
@@ -73,7 +64,7 @@ export function BreadcrumbWrapper({
                 {isLast ? (
                   <BreadcrumbPage className="flex items-center gap-1.5">
                     {Icon && <Icon className="h-4 w-4" />}
-                    {crumb.name}
+                    {crumb.label}
                   </BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink
@@ -81,7 +72,7 @@ export function BreadcrumbWrapper({
                     className="flex items-center gap-1.5"
                   >
                     {Icon && <Icon className="h-4 w-4" />}
-                    {crumb.name}
+                    {crumb.label}
                   </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
