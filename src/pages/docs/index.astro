@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 
 const docs = (await getCollection("docs")).sort(
   (a: any, b: any) =>
@@ -17,27 +18,202 @@ const docs = (await getCollection("docs")).sort(
 
 <Layout>
   <div class="mx-auto max-w-4xl px-4">
-    <div class="space-y-4">
+    <!-- Barra de búsqueda -->
+    <div
+      class="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-4 z-10 mb-8 py-4 backdrop-blur"
+    >
+      <div class="relative">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar por título o tags..."
+          class="border-input bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring w-full rounded-lg border px-4 py-3 pl-10 focus:border-transparent focus:ring-2 focus:outline-none"
+        />
+        <div
+          class="text-muted-foreground pointer-events-none absolute top-1/2 left-3 -translate-y-1/2"
+        >
+          <Search size={20} />
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de documentos -->
+    <div class="mb-8 space-y-4" id="docsList">
       {
         docs.map((doc: any) => (
           <a
             href={`/docs/${doc.slug}`}
-            class="block transition-transform hover:scale-[1.02]"
+            class="doc-item block transition-transform hover:scale-[1.02]"
+            data-title={doc.data.title.toLowerCase()}
+            data-tags={doc.data.tags?.join(",").toLowerCase() || ""}
+            data-description={doc.data.description?.toLowerCase() || ""}
           >
             <Card className="hover:border-foreground transition-colors cursor-pointer">
               <CardHeader>
                 <CardTitle>{doc.data.title}</CardTitle>
                 <CardDescription>{doc.data.description}</CardDescription>
               </CardHeader>
-              <CardFooter>
-                <span class="text-muted-foreground font-mono-italic text-xs">
+              <CardFooter className="flex justify-between items-center flex-wrap gap-2">
+                <span class="text-muted-foreground font-mono text-xs">
                   {new Date(doc.data.pubDate).toLocaleDateString()}
                 </span>
+                {doc.data.tags && doc.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2">
+                    {doc.data.tags.map((tag: string) => (
+                      <span class="bg-secondary text-secondary-foreground rounded-full px-2 py-1 text-xs">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </CardFooter>
             </Card>
           </a>
         ))
       }
     </div>
+
+    <!-- Paginación -->
+    <div id="pagination" class="mb-8 flex items-center justify-center gap-2">
+      <button
+        id="prevPage"
+        class="hover:bg-accent hover:text-accent-foreground border-input bg-background inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50"
+      >
+        <ChevronLeft size={16} />
+        Anterior
+      </button>
+      <div id="pageInfo" class="text-muted-foreground px-4 py-2 text-sm"></div>
+      <button
+        id="nextPage"
+        class="hover:bg-accent hover:text-accent-foreground border-input bg-background inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50"
+      >
+        Siguiente
+        <ChevronRight size={16} />
+      </button>
+    </div>
+
+    <div id="noResults" class="hidden py-12 text-center">
+      <p class="text-muted-foreground text-lg">No se encontraron resultados</p>
+      <p class="text-muted-foreground mt-2 text-sm">
+        Intenta con otros términos de búsqueda
+      </p>
+    </div>
   </div>
 </Layout>
+
+<script>
+  const ITEMS_PER_PAGE = 4;
+  let currentPage = 1;
+  let filteredItems: Element[] = [];
+
+  const searchInput = document.getElementById(
+    "searchInput",
+  ) as HTMLInputElement;
+  const docsList = document.getElementById("docsList");
+  const noResults = document.getElementById("noResults");
+  const pagination = document.getElementById("pagination");
+  const pageInfo = document.getElementById("pageInfo");
+  const prevPageBtn = document.getElementById("prevPage") as HTMLButtonElement;
+  const nextPageBtn = document.getElementById("nextPage") as HTMLButtonElement;
+  const docItems = Array.from(document.querySelectorAll(".doc-item"));
+
+  function performSearch() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+
+    filteredItems = docItems.filter((item) => {
+      const title = item.getAttribute("data-title") || "";
+      const tags = item.getAttribute("data-tags") || "";
+      const description = item.getAttribute("data-description") || "";
+
+      return (
+        title.includes(searchTerm) ||
+        tags.includes(searchTerm) ||
+        description.includes(searchTerm) ||
+        searchTerm === ""
+      );
+    });
+
+    currentPage = 1;
+    updateDisplay();
+  }
+
+  function updateDisplay() {
+    const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+
+    // Hide all items
+    docItems.forEach((item) => {
+      (item as HTMLElement).style.display = "none";
+    });
+
+    // Show only the items for the current page
+    filteredItems.slice(startIndex, endIndex).forEach((item) => {
+      (item as HTMLElement).style.display = "block";
+    });
+
+    // Show/hide no results and pagination
+    if (filteredItems.length === 0) {
+      docsList?.classList.add("hidden");
+      noResults?.classList.remove("hidden");
+      pagination?.classList.add("hidden");
+    } else {
+      docsList?.classList.remove("hidden");
+      noResults?.classList.add("hidden");
+      pagination?.classList.remove("hidden");
+    }
+
+    // Update page info
+    if (totalPages > 0) {
+      pageInfo!.textContent = `Página ${currentPage} de ${totalPages}`;
+    } else {
+      pageInfo!.textContent = "";
+    }
+
+    // Update button states
+    prevPageBtn.disabled = currentPage === 1;
+    nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
+  }
+
+  function goToPreviousPage() {
+    if (currentPage > 1) {
+      currentPage--;
+      updateDisplay();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  function goToNextPage() {
+    const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+    if (currentPage < totalPages) {
+      currentPage++;
+      updateDisplay();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  // Event listeners
+  searchInput?.addEventListener("input", performSearch);
+  prevPageBtn?.addEventListener("click", goToPreviousPage);
+  nextPageBtn?.addEventListener("click", goToNextPage);
+
+  filteredItems = docItems;
+  updateDisplay();
+</script>
+
+<style>
+  .doc-item {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

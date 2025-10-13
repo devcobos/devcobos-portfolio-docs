@@ -2,6 +2,7 @@
 title: "First post"
 description: "Lorem ipsum dolor sit amet"
 pubDate: "Jul 08 2022"
+tags: ["Ejemplo", "Docu"]
 ---
 
 # Docker en WSL2 sin Docker Desktop
