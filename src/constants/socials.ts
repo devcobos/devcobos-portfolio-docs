@@ -1,5 +1,5 @@
-import GithubIcon from "public/assets/github.svg";
-import LinkedinIcon from "public/assets/linkedin.svg";
+import GithubIcon from "public/assets/static/github.svg";
+import LinkedinIcon from "public/assets/static/linkedin.svg";
 
 export enum SocialsLinks {
   GitHub = "https://github.com/devcobos",

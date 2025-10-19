@@ -6,7 +6,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { NAVIGATION_ITEMS_ARRAY } from "@/constants/navigation.constant";
+import { NAVIGATION_ITEMS_ARRAY } from "@/constants/navigation";
 
 export default function Navigation() {
   return (

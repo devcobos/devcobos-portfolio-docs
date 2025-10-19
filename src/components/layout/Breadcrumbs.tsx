@@ -11,7 +11,7 @@ import {
   NAVIGATION_ITEMS,
   NAVIGATION_ITEMS_ARRAY,
   type NavigationItem,
-} from "@/constants/navigation.constant";
+} from "@/constants/navigation";
 import { ChevronsRightIcon } from "lucide-react";
 import React from "react";
 

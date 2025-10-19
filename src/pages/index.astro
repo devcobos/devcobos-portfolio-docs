@@ -1,5 +1,5 @@
 ---
-import { Badge } from "@/components/ui/badge";
+import TechStack from "@/components/layout/TechStack";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/card";
 import { SocialsLinks } from "@/constants/socials";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import GithubIcon from "public/assets/github.svg";
-import LinkedinIcon from "public/assets/linkedin.svg";
+import GithubIcon from "public/assets/static/github.svg";
+import LinkedinIcon from "public/assets/static/linkedin.svg";
 ---
 
 <BaseLayout>
@@ -55,64 +55,8 @@ import LinkedinIcon from "public/assets/linkedin.svg";
 
       <!-- Tech Stack -->
       <Card className="flex flex-col md:col-span-1 lg:col-span-1 lg:row-span-2">
-        <CardHeader>
-          <CardTitle>Tech Stack</CardTitle>
-        </CardHeader>
-        <CardContent className="flex-1 space-y-3">
-          <div>
-            <p class="mb-2 text-sm font-semibold">Frontend</p>
-            <div class="flex flex-wrap gap-2">
-              <Badge variant="secondary" className="gap-1">
-                <img src="/assets/react.svg" alt="React" class="h-3.5 w-3.5" />
-                React
-              </Badge>
-              <Badge variant="secondary" className="gap-1">
-                <img src="/assets/astro.svg" alt="Astro" class="h-3.5 w-3.5" />
-                Astro
-              </Badge>
-              <Badge variant="secondary" className="gap-1">
-                <img
-                  src="/assets/typescript.svg"
-                  alt="TypeScript"
-                  class="h-3.5 w-3.5"
-                />
-                TypeScript
-              </Badge>
-              <Badge variant="secondary" className="gap-1">
-                <img
-                  src="/assets/tailwind.svg"
-                  alt="Tailwind"
-                  class="h-3.5 w-3.5"
-                />
-                Tailwind
-              </Badge>
-            </div>
-          </div>
-          <div>
-            <p class="mb-2 text-sm font-semibold">Herramientas</p>
-            <div class="flex flex-wrap gap-2">
-              <Badge variant="secondary" className="gap-1">
-                <img src="/assets/git.svg" alt="Git" class="h-3.5 w-3.5" />
-                Git
-              </Badge>
-              <Badge variant="secondary" className="gap-1">
-                <img
-                  src="/assets/docker.svg"
-                  alt="Docker"
-                  class="h-3.5 w-3.5"
-                />
-                Docker
-              </Badge>
-              <Badge variant="secondary" className="gap-1">
-                <img
-                  src="/assets/vscode.svg"
-                  alt="VS Code"
-                  class="h-3.5 w-3.5"
-                />
-                VS Code
-              </Badge>
-            </div>
-          </div>
+        <CardContent>
+          <TechStack client:load />
         </CardContent>
       </Card>
 
