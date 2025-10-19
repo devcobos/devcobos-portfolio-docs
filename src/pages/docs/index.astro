@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 
 const docs = (await getCollection("docs")).sort(
   (a: any, b: any) =>
