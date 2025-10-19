@@ -6,7 +6,7 @@ export enum SocialsLinks {
   LinkedIn = "https://www.linkedin.com/in/leoncobos",
 }
 
-export const SocialsFooter: any = [
+export const SocialsList: any = [
   { icon: GithubIcon, url: SocialsLinks.GitHub, label: "GitHub" },
   { icon: LinkedinIcon, url: SocialsLinks.LinkedIn, label: "LinkedIn" },
 ];

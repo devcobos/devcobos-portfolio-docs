@@ -1,0 +1,50 @@
+---
+import { SocialsList } from "@/constants/socials";
+import { getYearsOfExperience } from "@/lib/dateUtils";
+
+const yearsOfExperience = getYearsOfExperience("05/2021");
+---
+
+<section class="flex items-center justify-center">
+  <div class="max-w-3xl space-y-6 text-center">
+    <div class="relative inline-block">
+      <img
+        src="/assets/avatar.png"
+        alt="DevCobos"
+        class="mx-auto mb-6 h-40 w-40 rounded-full"
+      />
+    </div>
+
+    <div class="space-y-3">
+      <h1 class="text-5xl font-bold md:text-7xl">DevCobos</h1>
+      <p class="text-muted-foreground text-xl font-light md:text-2xl">
+        desarrollando ...
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+      <span class="text-muted-foreground text-sm"> Sevilla, España </span>
+      <div class="bg-border h-4 w-px"></div>
+      <span class="text-muted-foreground text-sm">
+        <span class="text-foreground font-bold">+{yearsOfExperience}</span> años
+        de experiencia
+      </span>
+    </div>
+
+    <div class="flex justify-center gap-3 pt-6">
+      {
+        SocialsList.map((social: any) => (
+          <a
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group border-border hover:border-foreground rounded-full border p-3 transition-colors"
+            aria-label={social.label}
+          >
+            <social.icon class="h-5 w-5" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

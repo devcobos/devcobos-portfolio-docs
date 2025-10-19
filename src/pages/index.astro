@@ -1,148 +1,84 @@
 ---
+import Hero from "@/components/layout/Hero.astro";
 import TechStack from "@/components/layout/TechStack";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { SocialsLinks } from "@/constants/socials";
+import { Card, CardContent } from "@/components/ui/card";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import GithubIcon from "public/assets/static/github.svg";
-import LinkedinIcon from "public/assets/static/linkedin.svg";
 ---
 
 <BaseLayout>
-  <main class="mx-auto mt-3 max-w-7xl px-4">
-    <div
-      class="grid auto-rows-[minmax(200px,auto)] grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+  <main class="mx-auto max-w-7xl px-4 pb-12">
+    <!-- Hero Section con hint visual -->
+    <section
+      id="hero"
+      class="relative flex h-[70vh] flex-col items-center justify-center overflow-hidden"
     >
-      <!-- Presentación -->
-      <Card className="md:col-span-2 lg:col-span-2 lg:row-span-1">
-        <CardContent className="flex gap-6 pt-6">
-          <img
-            src="/assets/avatar.png"
-            alt="Avatar"
-            class="h-32 w-32 flex-shrink-0 rounded-full shadow-lg"
-          />
-          <div class="flex-1">
-            <h2 class="mb-2 text-2xl font-bold">¡Hey! Soy Joaquín</h2>
-            <p class="text-muted-foreground mb-3">Desarrollador</p>
-            <p class="text-sm">
-              Ta ta ta tatatata ta ta ta tara tara tara tarara. Ta ta ta
-              tatatata ta ta ta tara tara tara tarara. Ta ta ta tatatata ta ta
-              ta tara tara tara tarara.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+      <Hero />
+    </section>
 
-      <!-- Documentación Dev -->
-      <Card className="md:col-span-1 lg:col-span-1 lg:row-span-1">
-        <CardHeader>
-          <CardTitle>Documentación Dev</CardTitle>
-          <CardDescription>Recursos compartidos</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>Guías y apuntes sobre desarrollo en Markdown.</p>
-          <Button variant="link" className="mt-2 px-0" asChild>
-            <a href="/docs">Ver docs →</a>
-          </Button>
-        </CardContent>
+    <!-- Bento Grid -->
+    <section
+      id="bento"
+      class="mx-auto mt-8 grid max-w-5xl scroll-mt-10 grid-cols-1 gap-4 md:grid-cols-3"
+    >
+      <!-- About -->
+      <Card
+        className="group cursor-pointer border-2 transition-all hover:border-cyan-500/50 hover:bg-gradient-to-br hover:from-cyan-500/5 hover:to-teal-500/5 md:col-span-2"
+      >
+        <a href="/about" class="block h-full">
+          <CardContent className="flex items-center gap-6 py-8">
+            <div class="text-left">
+              <h3 class="mb-2 text-xl font-bold">Sobre mí</h3>
+              <p class="text-muted-foreground text-sm leading-relaxed">
+                Aqui habra que meter un texto mister wonderful, mas algún tipo
+                de flechita en la card para indicar que si clicka lo llevara al
+                about
+              </p>
+            </div>
+          </CardContent>
+        </a>
       </Card>
 
       <!-- Tech Stack -->
-      <Card className="flex flex-col md:col-span-1 lg:col-span-1 lg:row-span-2">
+      <Card
+        className="hover:border-primary/50 border-2 transition-all md:row-span-2"
+      >
         <CardContent>
           <TechStack client:load />
         </CardContent>
       </Card>
 
-      <!-- +3 Años -->
-      <Card className="flex items-center justify-center">
-        <CardContent className="text-center">
-          <p class="text-5xl font-bold">+3</p>
-          <p class="text-muted-foreground mt-2 text-sm">Años</p>
+      <!-- Docs -->
+      <Card
+        className="group hover:border-primary/50 cursor-pointer border-2 transition-all hover:bg-gradient-to-br hover:from-blue-500/5 hover:to-purple-500/5"
+      >
+        <a href="/docs" class="block h-full">
+          <CardContent
+            className="flex h-full flex-col items-center justify-center space-y-4 py-8 text-center"
+          >
+            <div class="transition-transform group-hover:scale-110">
+              <img
+                src="/assets/static/obsidian.svg"
+                alt="Obsidian logo"
+                class="mx-auto h-12 w-12 object-contain"
+              />
+            </div>
+
+            <div>
+              <h3 class="mb-1 text-lg font-bold">Documentación</h3>
+              <p class="text-muted-foreground text-sm">guías y recursos</p>
+            </div>
+          </CardContent>
+        </a>
+      </Card>
+
+      <!-- Vacio -->
+      <Card className="border-2">
+        <CardContent
+          className="flex h-full flex-col items-center justify-center space-y-4 py-8 text-center"
+        >
+          <p class="text-muted-foreground text-sm">Y aquí que meto??</p>
         </CardContent>
       </Card>
-
-      <!-- Card vacía con gradiente -->
-      <Card
-        className="relative overflow-hidden md:col-span-2 lg:col-span-2 lg:row-span-1"
-      >
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/20"
-        >
-        </div>
-      </Card>
-
-      <!-- Card vacía con gradiente -->
-      <Card
-        className="relative overflow-hidden md:col-span-1 lg:col-span-1 lg:row-span-2"
-      >
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/20"
-        >
-        </div>
-      </Card>
-
-      <!-- Card vacía con gradiente -->
-      <Card
-        className="relative overflow-hidden md:col-span-2 lg:col-span-2 lg:row-span-1"
-      >
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/20"
-        >
-        </div>
-      </Card>
-
-      <!-- Card vacía con gradiente -->
-      <Card className="relative overflow-hidden">
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-orange-500/20"
-        >
-        </div>
-      </Card>
-
-      <!-- GitHub -->
-      <Card className="group hover:bg-accent cursor-pointer transition-colors">
-        <a
-          href={SocialsLinks.GitHub}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex h-full items-center justify-center"
-        >
-          <CardContent className="text-center">
-            <GithubIcon class="mx-auto mb-2 h-16 w-16" />
-            <p class="font-semibold">GitHub</p>
-          </CardContent>
-        </a>
-      </Card>
-
-      <!-- LinkedIn -->
-      <Card className="group hover:bg-accent cursor-pointer transition-colors">
-        <a
-          href={SocialsLinks.LinkedIn}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex h-full items-center justify-center"
-        >
-          <CardContent className="text-center">
-            <LinkedinIcon class="mx-auto mb-2 h-16 w-16" />
-            <p class="font-semibold">LinkedIn</p>
-          </CardContent>
-        </a>
-      </Card>
-
-      <!-- Card vacía con gradiente -->
-      <Card className="relative overflow-hidden">
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/20"
-        >
-        </div>
-      </Card>
-    </div>
+    </section>
   </main>
 </BaseLayout>

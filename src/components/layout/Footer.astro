@@ -1,5 +1,5 @@
 ---
-import { SocialsFooter } from "@/constants/socials";
+import { SocialsList } from "@/constants/socials";
 ---
 
 <footer class="mt-1">
@@ -10,7 +10,7 @@ import { SocialsFooter } from "@/constants/socials";
     <!-- Social Links -->
     <div class="flex items-center gap-4">
       {
-        SocialsFooter.map((social: any) => (
+        SocialsList.map((social: any) => (
           <a
             href={social.url}
             target="_blank"
