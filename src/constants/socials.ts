@@ -6,7 +6,24 @@ export enum SocialsLinks {
   LinkedIn = "https://www.linkedin.com/in/leoncobos",
 }
 
-export const SocialsList: any = [
-  { icon: GithubIcon, url: SocialsLinks.GitHub, label: "GitHub" },
-  { icon: LinkedinIcon, url: SocialsLinks.LinkedIn, label: "LinkedIn" },
+export interface SocialItem {
+  icon: any;
+  url: string;
+  label: string;
+  ariaLabel?: string;
+}
+
+export const SocialsList: SocialItem[] = [
+  { 
+    icon: GithubIcon, 
+    url: SocialsLinks.GitHub, 
+    label: "GitHub",
+    ariaLabel: "Visit GitHub profile"
+  },
+  { 
+    icon: LinkedinIcon, 
+    url: SocialsLinks.LinkedIn, 
+    label: "LinkedIn",
+    ariaLabel: "Visit LinkedIn profile"
+  },
 ];

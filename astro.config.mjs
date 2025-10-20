@@ -5,7 +5,7 @@ import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://devcobos-docs.web.app",
+  site: "https://devcobos.vercel.app",
 
   vite: {
     plugins: [tailwindcss()],

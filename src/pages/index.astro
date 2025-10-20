@@ -1,4 +1,5 @@
 ---
+import Footer from "@/components/layout/Footer.astro";
 import Hero from "@/components/layout/Hero.astro";
 import TechStack from "@/components/layout/TechStack";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,79 +7,124 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <main class="mx-auto max-w-7xl px-4 pb-12">
-    <!-- Hero Section con hint visual -->
-    <section
-      id="hero"
-      class="relative flex h-[70vh] flex-col items-center justify-center overflow-hidden"
-    >
-      <Hero />
-    </section>
+  <!-- Hero Section - Full viewport height -->
+  <section id="hero" class="h-screen">
+    <Hero />
+  </section>
 
-    <!-- Bento Grid -->
-    <section
-      id="bento"
-      class="mx-auto mt-8 grid max-w-5xl scroll-mt-10 grid-cols-1 gap-4 md:grid-cols-3"
-    >
-      <!-- About -->
-      <Card
-        className="group cursor-pointer border-2 transition-all hover:border-cyan-500/50 hover:bg-gradient-to-br hover:from-cyan-500/5 hover:to-teal-500/5 md:col-span-2"
+  <!-- Bento + Footer Section - Full viewport height -->
+  <section id="content" class="flex h-screen flex-col">
+    <!-- Main content with proper spacing -->
+    <main class="mx-auto flex max-w-7xl flex-1 items-center px-4 py-16">
+      <!-- Bento Grid -->
+      <section
+        id="bento"
+        class="mx-auto grid w-full max-w-5xl scroll-mt-10 grid-cols-1 gap-6 md:grid-cols-3"
       >
-        <a href="/about" class="block h-full">
-          <CardContent className="flex items-center gap-6 py-8">
-            <div class="text-left">
-              <h3 class="mb-2 text-xl font-bold">Sobre mí</h3>
-              <p class="text-muted-foreground text-sm leading-relaxed">
-                Aqui habra que meter un texto mister wonderful, mas algún tipo
-                de flechita en la card para indicar que si clicka lo llevara al
-                about
-              </p>
-            </div>
-          </CardContent>
-        </a>
-      </Card>
-
-      <!-- Tech Stack -->
-      <Card
-        className="hover:border-primary/50 border-2 transition-all md:row-span-2"
-      >
-        <CardContent>
-          <TechStack client:load />
-        </CardContent>
-      </Card>
-
-      <!-- Docs -->
-      <Card
-        className="group hover:border-primary/50 cursor-pointer border-2 transition-all hover:bg-gradient-to-br hover:from-blue-500/5 hover:to-purple-500/5"
-      >
-        <a href="/docs" class="block h-full">
-          <CardContent
-            className="flex h-full flex-col items-center justify-center space-y-4 py-8 text-center"
-          >
-            <div class="transition-transform group-hover:scale-110">
-              <img
-                src="/assets/static/obsidian.svg"
-                alt="Obsidian logo"
-                class="mx-auto h-12 w-12 object-contain"
-              />
-            </div>
-
-            <div>
-              <h3 class="mb-1 text-lg font-bold">Documentación</h3>
-              <p class="text-muted-foreground text-sm">guías y recursos</p>
-            </div>
-          </CardContent>
-        </a>
-      </Card>
-
-      <!-- Vacio -->
-      <Card className="border-2">
-        <CardContent
-          className="flex h-full flex-col items-center justify-center space-y-4 py-8 text-center"
+        <!-- About -->
+        <Card
+          className="group hover:border-primary/50 hover:bg-primary/5 cursor-pointer transition-all md:col-span-2"
         >
-          <p class="text-muted-foreground text-sm">Y aquí que meto??</p>
-        </CardContent>
-      </Card>
-    </section>
-  </main>
+          <a href="/about" class="block h-full">
+            <CardContent className="flex items-center gap-6 p-8">
+              <div class="flex-1 text-left">
+                <div class="mb-3 flex items-center gap-2">
+                  <h3 class="text-2xl font-bold">Sobre mí</h3>
+                  <svg
+                    class="text-muted-foreground h-5 w-5 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </div>
+                <p class="text-muted-foreground leading-relaxed">
+                  Desarrollador apasionado por crear experiencias digitales únicas. Especializado en
+                  tecnologías modernas y siempre en busca de nuevos desafíos.
+                </p>
+              </div>
+            </CardContent>
+          </a>
+        </Card>
+
+        <!-- Tech Stack -->
+        <Card className="hover:border-primary/50 transition-all md:row-span-2">
+          <CardContent>
+            <TechStack client:load />
+          </CardContent>
+        </Card>
+
+        <!-- Docs -->
+        <Card
+          className="group hover:border-primary/50 hover:bg-primary/5 cursor-pointer transition-all"
+        >
+          <a href="/docs" class="block h-full">
+            <CardContent
+              className="flex h-full flex-col items-center justify-center space-y-4 p-8 text-center"
+            >
+              <div class="transition-transform group-hover:scale-110">
+                <img
+                  src="/assets/static/obsidian.svg"
+                  alt="Obsidian logo"
+                  class="mx-auto h-12 w-12 object-contain"
+                />
+              </div>
+              <div>
+                <h3 class="mb-2 text-lg font-bold">Documentación</h3>
+                <p class="text-muted-foreground text-sm">Guías y recursos técnicos</p>
+              </div>
+            </CardContent>
+          </a>
+        </Card>
+
+        <!-- Projects -->
+        <Card
+          className="group hover:border-primary/50 hover:bg-primary/5 cursor-pointer transition-all"
+        >
+          <CardContent
+            className="flex h-full flex-col items-center justify-center space-y-4 p-8 text-center"
+          >
+            <div class="bg-primary/10 rounded-full p-3 transition-transform group-hover:scale-110">
+              <svg
+                class="text-primary h-8 w-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="mb-2 text-lg font-bold">Proyectos</h3>
+              <p class="text-muted-foreground text-sm">Trabajos y experimentos</p>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+  </section>
+
+  <script>
+    import { initScrollSnap } from "@/scripts/scrollSnap";
+
+    // Ejecutar cuando el DOM esté listo
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initScrollSnap);
+    } else {
+      initScrollSnap();
+    }
+  </script>
 </BaseLayout>

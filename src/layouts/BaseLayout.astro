@@ -12,10 +12,7 @@ interface Props {
   description?: string;
 }
 
-const {
-  title = "DevCobos",
-  description = "Developer portfolio and documentation",
-} = Astro.props;
+const { title = "DevCobos", description = "Developer portfolio and documentation" } = Astro.props;
 
 const currentPath = Astro.url.pathname;
 const showBreadcrumbs = currentPath !== "/";
@@ -38,9 +35,7 @@ const showBreadcrumbs = currentPath !== "/";
         const getTheme = () => {
           const stored = localStorage.getItem("selected_theme");
           if (stored) return stored;
-          return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
+          return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         };
 
         const theme = getTheme();
@@ -68,8 +63,6 @@ const showBreadcrumbs = currentPath !== "/";
     <main class="animate-fade-in">
       <slot />
     </main>
-
-    <Footer />
 
     <!-- Vercel Analytics & Speed Insights -->
     <Analytics />

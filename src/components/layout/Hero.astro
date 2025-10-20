@@ -1,50 +1,86 @@
 ---
-import { SocialsList } from "@/constants/socials";
+import { Badge } from "@/components/ui/badge";
+import { SocialsList, type SocialItem } from "@/constants/socials";
 import { getYearsOfExperience } from "@/lib/dateUtils";
 
 const yearsOfExperience = getYearsOfExperience("05/2022");
 ---
 
-<section class="flex items-center justify-center">
-  <div class="max-w-3xl space-y-6 text-center">
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden">
+  <div
+    class="from-background via-muted/40 to-card dark:from-background dark:via-muted/20 dark:to-background absolute inset-0 bg-gradient-to-br"
+  >
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-4xl space-y-10 px-6 text-center">
+    <!-- Avatar -->
     <div class="relative inline-block">
-      <img
-        src="/assets/avatar.png"
-        alt="DevCobos"
-        class="mx-auto mb-6 h-40 w-40 rounded-full"
-      />
+      <div
+        class="from-primary/80 to-primary relative rounded-full bg-gradient-to-br p-1 shadow-2xl"
+      >
+        <img
+          src="/assets/avatar.png"
+          alt="DevCobos"
+          class="border-background h-40 w-40 rounded-full border-4 object-cover shadow-xl md:h-48 md:w-48"
+        />
+      </div>
     </div>
 
-    <div class="space-y-3">
-      <h1 class="text-5xl font-bold md:text-7xl">DevCobos</h1>
+    <!-- Title -->
+    <div class="space-y-4">
+      <h1
+        class="from-foreground via-primary to-foreground bg-gradient-to-r bg-clip-text text-5xl leading-tight font-bold text-transparent md:text-7xl lg:text-8xl"
+      >
+        DevCobos
+      </h1>
       <p class="text-muted-foreground text-xl font-light md:text-2xl">
-        desarrollando ...
+        desarrollando<span class="text-primary ml-1 animate-pulse">...</span>
       </p>
     </div>
 
-    <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
-      <span class="text-muted-foreground text-sm"> Sevilla, España </span>
-      <div class="bg-border h-4 w-px"></div>
-      <span class="text-muted-foreground text-sm">
-        <span class="text-foreground font-bold">+{yearsOfExperience}</span> años
-        de experiencia
-      </span>
+    <!-- Info badges using shadcn Badge -->
+    <div class="flex flex-wrap justify-center gap-3">
+      <Badge variant="outline" className="gap-2 px-4 py-2 text-sm">
+        <div class="bg-primary h-2 w-2 animate-pulse rounded-full"></div>
+        Sevilla, España
+      </Badge>
+
+      <Badge variant="outline" className="px-4 py-2 text-sm">
+        <span class="text-primary font-bold">+{yearsOfExperience}</span> años de experiencia
+      </Badge>
     </div>
 
-    <div class="flex justify-center gap-3 pt-6">
+    <!-- Social links using shadcn Button -->
+    <div class="flex justify-center gap-4">
       {
-        SocialsList.map((social: any) => (
+        SocialsList.map((social: SocialItem) => (
           <a
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="group border-border hover:border-foreground rounded-full border p-3 transition-colors"
-            aria-label={social.label}
+            aria-label={social.ariaLabel || social.label}
+            class="border-input bg-background ring-offset-background hover:border-primary/50 hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring inline-flex h-12 w-12 items-center justify-center rounded-full border text-sm font-medium transition-all duration-300 hover:scale-110 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             <social.icon class="h-5 w-5" />
           </a>
         ))
       }
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="mt-16 animate-bounce">
+      <svg
+        class="text-muted-foreground/50 mx-auto h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
     </div>
   </div>
 </section>

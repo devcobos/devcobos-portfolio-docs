@@ -1,20 +1,14 @@
 ---
+import Footer from "@/components/layout/Footer.astro";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 
 const docs = (await getCollection("docs")).sort(
-  (a: any, b: any) =>
-    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+  (a: any, b: any) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
 ---
 
@@ -76,32 +70,21 @@ const docs = (await getCollection("docs")).sort(
 
     <!-- Paginación -->
     <div id="pagination" class="mb-8 flex items-center justify-center gap-2">
-      <Button
-        id="prevPage"
-        variant="outline"
-        size="icon"
-        className="bg-card cursor-pointer"
-      >
+      <Button id="prevPage" variant="outline" size="icon" className="bg-card cursor-pointer">
         <ChevronLeft size={16} />
       </Button>
       <div id="pageInfo" class="text-muted-foreground px-4 py-2 text-sm"></div>
-      <Button
-        id="nextPage"
-        variant="outline"
-        size="icon"
-        className="bg-card cursor-pointer"
-      >
+      <Button id="nextPage" variant="outline" size="icon" className="bg-card cursor-pointer">
         <ChevronRight size={16} />
       </Button>
     </div>
 
     <div id="noResults" class="hidden py-12 text-center">
       <p class="text-muted-foreground text-lg">No se encontraron resultados</p>
-      <p class="text-muted-foreground mt-2 text-sm">
-        Intenta con otros términos de búsqueda
-      </p>
+      <p class="text-muted-foreground mt-2 text-sm">Intenta con otros términos de búsqueda</p>
     </div>
   </div>
+  <Footer />
 </BaseLayout>
 
 <script>
@@ -109,9 +92,7 @@ const docs = (await getCollection("docs")).sort(
   let currentPage = 1;
   let filteredItems: Element[] = [];
 
-  const searchInput = document.getElementById(
-    "searchInput",
-  ) as HTMLInputElement;
+  const searchInput = document.getElementById("searchInput") as HTMLInputElement;
   const docsList = document.getElementById("docsList");
   const noResults = document.getElementById("noResults");
   const pagination = document.getElementById("pagination");
@@ -123,7 +104,7 @@ const docs = (await getCollection("docs")).sort(
   function performSearch() {
     const searchTerm = searchInput.value.toLowerCase().trim();
 
-    filteredItems = docItems.filter((item) => {
+    filteredItems = docItems.filter(item => {
       const title = item.getAttribute("data-title") || "";
       const tags = item.getAttribute("data-tags") || "";
       const description = item.getAttribute("data-description") || "";
@@ -146,12 +127,12 @@ const docs = (await getCollection("docs")).sort(
     const endIndex = startIndex + ITEMS_PER_PAGE;
 
     // Hide all items
-    docItems.forEach((item) => {
+    docItems.forEach(item => {
       (item as HTMLElement).style.display = "none";
     });
 
     // Show only the items for the current page
-    filteredItems.slice(startIndex, endIndex).forEach((item) => {
+    filteredItems.slice(startIndex, endIndex).forEach(item => {
       (item as HTMLElement).style.display = "block";
     });
 

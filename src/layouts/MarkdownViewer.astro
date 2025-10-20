@@ -1,5 +1,6 @@
 ---
 import DownloadDropdown from "@/components/layout/DownloadDropdown";
+import Footer from "@/components/layout/Footer.astro";
 
 interface Props {
   markdownContent: string;
@@ -11,11 +12,7 @@ const { markdownContent, title } = Astro.props;
 
 <div class="mx-auto max-w-4xl px-4">
   <div class="mb-6 flex justify-end">
-    <DownloadDropdown
-      client:load
-      markdownContent={markdownContent}
-      title={title}
-    />
+    <DownloadDropdown client:load markdownContent={markdownContent} title={title} />
   </div>
 
   <div
@@ -41,3 +38,4 @@ const { markdownContent, title } = Astro.props;
     <slot />
   </div>
 </div>
+<Footer />

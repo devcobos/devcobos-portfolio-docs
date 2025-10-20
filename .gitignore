@@ -29,8 +29,4 @@ pnpm-debug.log*
 # log files
 *.log
 
-# firebase
-.firebase/
-
-devcobos-app.web.app
-devcobos-app.firebaseapp.com
+.kiro/
