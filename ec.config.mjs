@@ -23,8 +23,9 @@ export default defineEcConfig({
 
     codePaddingBlock: "1rem",
     codePaddingInline: "1.5rem",
-    codeFontSize: "0.85rem",
-    codeLineHeight: "1.7",
+    codeFontFamily:"var(--font-mono)",
+    codeFontSize: "0.80rem",
+    codeLineHeight: "1.5",
     codeBackground: "var(--color-card)",
 
     uiLineHeight: "1.65",
