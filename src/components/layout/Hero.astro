@@ -2,6 +2,7 @@
 import { Badge } from "@/components/ui/badge";
 import { SocialsList, type SocialItem } from "@/constants/socials";
 import { getYearsOfExperience } from "@/lib/dateUtils";
+import { ArrowBigDownDash, MoveDown } from "lucide-react";
 
 const yearsOfExperience = getYearsOfExperience("05/2022");
 ---
@@ -69,18 +70,7 @@ const yearsOfExperience = getYearsOfExperience("05/2022");
 
     <!-- Scroll indicator -->
     <div class="mt-16 animate-bounce">
-      <svg
-        class="text-muted-foreground/50 mx-auto h-6 w-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-      </svg>
+      <ArrowBigDownDash className="text-muted-foreground/50 mx-auto h-10 w-10" strokeWidth="1" />
     </div>
   </div>
 </section>
