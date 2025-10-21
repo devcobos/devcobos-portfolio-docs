@@ -11,7 +11,7 @@ export interface TechCategory {
 
 export const techStack: TechCategory[] = [
   {
-    title: "Lenguajes",
+    title: "Lenguajes de programación",
     technologies: [
       {
         name: "TypeScript",
