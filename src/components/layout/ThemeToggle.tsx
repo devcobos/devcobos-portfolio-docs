@@ -4,7 +4,7 @@ import { Moon, Sun } from "lucide-react";
 import { useState } from "react";
 
 export default function ThemeToggle() {
-  const toggleTheme = useThemeStore((state) => state.toggleTheme);
+  const toggleTheme = useThemeStore(state => state.toggleTheme);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleClick = () => {
@@ -14,9 +14,7 @@ export default function ThemeToggle() {
     setTimeout(() => setIsAnimating(false), 500);
   };
 
-  const buttonClasses = `cursor-pointer ${
-    isAnimating ? "animate-in zoom-in-95 duration-200" : ""
-  }`;
+  const buttonClasses = `cursor-pointer ${isAnimating ? "animate-in zoom-in-95 duration-200" : ""}`;
 
   const sunClasses =
     "h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all duration-300 dark:scale-0 dark:-rotate-90";
@@ -35,10 +33,7 @@ export default function ThemeToggle() {
       }}
     >
       <Sun className={sunClasses} data-state={isAnimating ? "hide" : "show"} />
-      <Moon
-        className={moonClasses}
-        data-state={isAnimating ? "show" : "hide"}
-      />
+      <Moon className={moonClasses} data-state={isAnimating ? "show" : "hide"} />
       <span className="sr-only">Toggle theme</span>
 
       <style>{`

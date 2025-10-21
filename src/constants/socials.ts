@@ -14,16 +14,16 @@ export interface SocialItem {
 }
 
 export const SocialsList: SocialItem[] = [
-  { 
-    icon: GithubIcon, 
-    url: SocialsLinks.GitHub, 
+  {
+    icon: GithubIcon,
+    url: SocialsLinks.GitHub,
     label: "GitHub",
-    ariaLabel: "Visit GitHub profile"
+    ariaLabel: "Visit GitHub profile",
   },
-  { 
-    icon: LinkedinIcon, 
-    url: SocialsLinks.LinkedIn, 
+  {
+    icon: LinkedinIcon,
+    url: SocialsLinks.LinkedIn,
     label: "LinkedIn",
-    ariaLabel: "Visit LinkedIn profile"
+    ariaLabel: "Visit LinkedIn profile",
   },
 ];

@@ -5,19 +5,11 @@ type LinkProps = ComponentProps<"a"> & {
   href: string;
 };
 
-export function NavigationLink({
-  href,
-  className,
-  children,
-  ...props
-}: LinkProps) {
+export function NavigationLink({ href, className, children, ...props }: LinkProps) {
   return (
     <a
       href={href}
-      className={cn(
-        "text-foreground hover:text-primary px-4 py-2 transition-colors",
-        className,
-      )}
+      className={cn("text-foreground hover:text-primary px-4 py-2 transition-colors", className)}
       {...props}
     >
       {children}

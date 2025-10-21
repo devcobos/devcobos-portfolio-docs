@@ -13,7 +13,6 @@ export const NAVIGATION_ITEMS: Record<string, NavigationItem> = {
   about: { href: "/about", label: "About", icon: Info },
 };
 
-export const NAVIGATION_ITEMS_ARRAY: NavigationItem[] =
-  Object.values(NAVIGATION_ITEMS);
+export const NAVIGATION_ITEMS_ARRAY: NavigationItem[] = Object.values(NAVIGATION_ITEMS);
 
 export const DEFAULT_FILE_MARKDOWN_ICON = FileText;

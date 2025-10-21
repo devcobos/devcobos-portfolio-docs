@@ -12,10 +12,7 @@ interface DownloadDropdownProps {
   title: string;
 }
 
-export default function DownloadDropdown({
-  markdownContent,
-  title,
-}: DownloadDropdownProps) {
+export default function DownloadDropdown({ markdownContent, title }: DownloadDropdownProps) {
   const downloadMarkdown = () => {
     const blob = new Blob([markdownContent], {
       type: "text/markdown;charset=utf-8",

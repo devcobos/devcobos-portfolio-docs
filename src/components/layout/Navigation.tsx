@@ -12,7 +12,7 @@ export default function Navigation() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {NAVIGATION_ITEMS_ARRAY.map((item) => (
+        {NAVIGATION_ITEMS_ARRAY.map(item => (
           <NavigationMenuItem key={item.href}>
             <NavigationMenuLink asChild>
               <NavigationLink href={item.href}>{item.label}</NavigationLink>

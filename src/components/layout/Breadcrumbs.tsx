@@ -20,23 +20,19 @@ interface BreadcrumbsProps {
   currentPath: string;
 }
 
-export default function Breadcrumbs({
-  className,
-  currentPath,
-}: BreadcrumbsProps) {
+export default function Breadcrumbs({ className, currentPath }: BreadcrumbsProps) {
   if (!currentPath || currentPath === "/") return null;
 
   const segments = currentPath.split("/").filter(Boolean);
 
   const breadcrumbs: NavigationItem[] = segments.map((segment, index) => {
     const href = "/" + segments.slice(0, index + 1).join("/");
-    const navItem = NAVIGATION_ITEMS_ARRAY.find((item) => item.href === href);
+    const navItem = NAVIGATION_ITEMS_ARRAY.find(item => item.href === href);
 
     return (
       navItem ?? {
         href,
-        label:
-          segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " "),
+        label: segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " "),
         icon: DEFAULT_FILE_MARKDOWN_ICON,
       }
     );
@@ -70,10 +66,7 @@ export default function Breadcrumbs({
                     {crumb.label}
                   </BreadcrumbPage>
                 ) : (
-                  <BreadcrumbLink
-                    href={crumb.href}
-                    className="flex items-center gap-1.5"
-                  >
+                  <BreadcrumbLink href={crumb.href} className="flex items-center gap-1.5">
                     {Icon && <Icon className="h-4 w-4" />}
                     {crumb.label}
                   </BreadcrumbLink>

@@ -7,13 +7,7 @@ interface TechBadgeProps extends Technology {
   onHover: (name: string | null) => void;
 }
 
-const TechBadge = ({
-  name,
-  icon,
-  color,
-  isActive,
-  onHover,
-}: TechBadgeProps) => (
+const TechBadge = ({ name, icon, color, isActive, onHover }: TechBadgeProps) => (
   <Badge
     variant="secondary"
     onMouseEnter={() => onHover(name)}
@@ -42,13 +36,11 @@ export default function TechStack() {
         <section key={title}>
           <header className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold">
             {title}
-            <span className="text-muted-foreground text-[10px]">
-              ({technologies.length})
-            </span>
+            <span className="text-muted-foreground text-[10px]">({technologies.length})</span>
           </header>
 
           <div className="flex flex-wrap gap-1.5">
-            {technologies.map((tech) => (
+            {technologies.map(tech => (
               <TechBadge
                 key={tech.name}
                 {...tech}
