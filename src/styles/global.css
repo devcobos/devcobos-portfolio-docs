@@ -179,6 +179,11 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Asegurar que el contenido no se desborde con header fixed */
+  html, body {
+    @apply overflow-x-hidden;
+  }  
 }
 
 @layer utilities {

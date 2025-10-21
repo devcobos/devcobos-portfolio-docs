@@ -2,12 +2,12 @@
 import { Badge } from "@/components/ui/badge";
 import { SocialsList, type SocialItem } from "@/constants/socials";
 import { getYearsOfExperience } from "@/lib/dateUtils";
-import { ArrowBigDownDash, MoveDown } from "lucide-react";
+import { ArrowBigDownDash } from "lucide-react";
 
 const yearsOfExperience = getYearsOfExperience("05/2022");
 ---
 
-<section class="relative flex h-screen items-center justify-center overflow-hidden">
+<section class="relative flex h-full items-center justify-center overflow-hidden">
   <div
     class="from-background via-muted/40 to-card dark:from-background dark:via-muted/20 dark:to-background absolute inset-0 bg-gradient-to-br"
   >
@@ -20,9 +20,11 @@ const yearsOfExperience = getYearsOfExperience("05/2022");
         class="from-primary/80 to-primary relative rounded-full bg-gradient-to-br p-1 shadow-2xl"
       >
         <img
-          src="/assets/avatar.png"
+          src="/assets/avatar.webp"
           alt="DevCobos"
           class="border-background h-40 w-40 rounded-full border-4 object-cover shadow-xl md:h-48 md:w-48"
+          loading="eager"
+          fetchpriority="high"
         />
       </div>
     </div>

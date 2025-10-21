@@ -7,13 +7,13 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <!-- Hero Section - Full viewport height -->
-  <section id="hero" class="h-screen">
+  <!-- Hero Section - Full viewport height minus header -->
+  <section id="hero" class="h-[calc(100vh-3.5rem)]">
     <Hero />
   </section>
 
-  <!-- Bento + Footer Section - Full viewport height -->
-  <section id="content" class="flex h-screen flex-col">
+  <!-- Bento + Footer Section - Full viewport height minus header -->
+  <section id="content" class="flex h-[calc(100vh-3.5rem)] flex-col">
     <!-- Main content with proper spacing -->
     <main class="mx-auto flex max-w-7xl flex-1 items-center px-4 py-16">
       <!-- Bento Grid -->
