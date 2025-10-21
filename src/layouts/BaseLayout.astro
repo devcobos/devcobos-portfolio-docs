@@ -48,26 +48,26 @@ const showBreadcrumbs = currentPath !== "/";
     </script>
   </head>
 
-  <body class="font-sans antialiased">
+  <body class="font-sans">
     <!-- Fixed Header -->
     <Header />
 
     <!-- Main Content Container with proper top padding -->
-    <div class="min-h-screen pt-14">
-      {
-        showBreadcrumbs && (
+    {
+      showBreadcrumbs && (
+        <div class="pt-14">
           <Breadcrumbs
             client:load
             currentPath={currentPath}
             className="mx-auto flex h-14 max-w-4xl items-center px-4"
           />
-        )
-      }
+        </div>
+      )
+    }
 
-      <main class="animate-fade-in">
-        <slot />
-      </main>
-    </div>
+    <main class="animate-fade-in">
+      <slot />
+    </main>
 
     <!-- Vercel Analytics & Speed Insights -->
     <Analytics />

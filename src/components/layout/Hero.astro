@@ -2,7 +2,7 @@
 import { Badge } from "@/components/ui/badge";
 import { SocialsList, type SocialItem } from "@/constants/socials";
 import { getYearsOfExperience } from "@/lib/dateUtils";
-import { ArrowBigDownDash } from "lucide-react";
+import { ArrowBigDownDash, MoveDown } from "lucide-react";
 
 const yearsOfExperience = getYearsOfExperience("05/2022");
 ---
@@ -23,8 +23,6 @@ const yearsOfExperience = getYearsOfExperience("05/2022");
           src="/assets/avatar.webp"
           alt="DevCobos"
           class="border-background h-40 w-40 rounded-full border-4 object-cover shadow-xl md:h-48 md:w-48"
-          loading="eager"
-          fetchpriority="high"
         />
       </div>
     </div>
