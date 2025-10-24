@@ -1,11 +1,15 @@
 ---
 import { SocialsList } from "@/constants/socials";
+import { SITE_CONFIG } from "@/config/site.config";
 ---
 
 <footer class="mt-1">
   <div class="mx-auto flex h-14 max-w-4xl items-center justify-between px-4">
     <!-- Brand/Copyright -->
-    <div class="text-muted-foreground text-sm">© 2025 DevCobos</div>
+    <div class="text-muted-foreground text-sm">
+      © {new Date().getFullYear()}
+      {SITE_CONFIG.displayName}
+    </div>
 
     <!-- Social Links -->
     <div class="flex items-center gap-4">

@@ -4,6 +4,7 @@ import Hero from "@/components/layout/Hero.astro";
 import TechStack from "@/components/layout/TechStack";
 import { Card, CardContent } from "@/components/ui/card";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE_CONFIG } from "@/config/site.config";
 ---
 
 <BaseLayout>
@@ -44,8 +45,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
                   </svg>
                 </div>
                 <p class="text-muted-foreground leading-relaxed">
-                  Desarrollador apasionado por crear experiencias digitales únicas. Especializado en
-                  tecnologías modernas y siempre en busca de nuevos desafíos.
+                  {SITE_CONFIG.description}
                 </p>
               </div>
             </CardContent>

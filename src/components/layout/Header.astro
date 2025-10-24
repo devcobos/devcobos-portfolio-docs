@@ -1,6 +1,7 @@
 ---
 import Navigation from "@/components/layout/Navigation";
 import ThemeToggle from "@/components/layout/ThemeToggle";
+import { SITE_CONFIG } from "@/config/site.config";
 ---
 
 <header
@@ -9,7 +10,7 @@ import ThemeToggle from "@/components/layout/ThemeToggle";
 >
   <div class="mx-auto flex h-14 max-w-4xl items-center justify-between px-4">
     <a href="/" class="group relative text-lg font-bold transition-all hover:scale-105">
-      <span class="bg-clip-text"> DevCobos </span>
+      <span class="bg-clip-text"> {SITE_CONFIG.displayName} </span>
     </a>
 
     <div class="flex items-center gap-2">

@@ -1,10 +1,11 @@
 import GithubIcon from "public/assets/static/github.svg";
 import LinkedinIcon from "public/assets/static/linkedin.svg";
+import { SITE_CONFIG } from "@/config/site.config";
 
-export enum SocialsLinks {
-  GitHub = "https://github.com/devcobos",
-  LinkedIn = "https://www.linkedin.com/in/leoncobos",
-}
+export const SocialsLinks = {
+  GitHub: SITE_CONFIG.social.github,
+  LinkedIn: SITE_CONFIG.social.linkedin,
+} as const;
 
 export interface SocialItem {
   icon: any;
