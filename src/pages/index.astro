@@ -8,31 +8,33 @@ import { SITE_CONFIG } from "@/config/site.config";
 ---
 
 <BaseLayout>
-  <!-- Hero Section - Full viewport height minus header -->
-  <section id="hero" class="h-[100vh]">
+  <!-- Hero Section -->
+  <section id="hero" class="min-h-[calc(100vh-3.5rem)]">
     <Hero />
   </section>
 
-  <!-- Bento + Footer Section - Full viewport height minus header -->
-  <section id="content" class="flex h-[calc(100vh-3.5rem)] flex-col">
+  <!-- Bento + Footer Section -->
+  <section id="content" class="flex min-h-[calc(100vh-3.5rem)] flex-col">
     <!-- Main content with proper spacing -->
-    <main class="mx-auto flex max-w-7xl flex-1 items-center px-4 py-16">
+    <main
+      class="mx-auto flex max-w-7xl flex-1 items-center px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16"
+    >
       <!-- Bento Grid -->
       <section
         id="bento"
-        class="mx-auto grid w-full max-w-5xl scroll-mt-10 grid-cols-1 gap-6 md:grid-cols-3"
+        class="mx-auto grid w-full max-w-5xl scroll-mt-10 grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3"
       >
         <!-- About -->
         <Card
           className="group hover:border-primary/50 hover:bg-primary/5 cursor-pointer transition-all md:col-span-2"
         >
           <a href="/about" class="block h-full">
-            <CardContent className="flex items-center gap-6 p-8">
+            <CardContent className="flex items-center gap-4 p-6 sm:gap-6 sm:p-8">
               <div class="flex-1 text-left">
-                <div class="mb-3 flex items-center gap-2">
-                  <h3 class="text-2xl font-bold">Sobre mí</h3>
+                <div class="mb-2 flex items-center gap-2 sm:mb-3">
+                  <h3 class="text-xl font-bold sm:text-2xl">Sobre mí</h3>
                   <svg
-                    class="text-muted-foreground h-5 w-5 transition-transform group-hover:translate-x-1"
+                    class="text-muted-foreground h-4 w-4 transition-transform group-hover:translate-x-1 sm:h-5 sm:w-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -44,7 +46,7 @@ import { SITE_CONFIG } from "@/config/site.config";
                       d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                   </svg>
                 </div>
-                <p class="text-muted-foreground leading-relaxed">
+                <p class="text-muted-foreground text-sm leading-relaxed sm:text-base">
                   {SITE_CONFIG.description}
                 </p>
               </div>
@@ -54,7 +56,7 @@ import { SITE_CONFIG } from "@/config/site.config";
 
         <!-- Tech Stack -->
         <Card className="hover:border-primary/50 transition-all md:row-span-2">
-          <CardContent>
+          <CardContent className="p-4 sm:p-6">
             <TechStack client:load />
           </CardContent>
         </Card>
@@ -65,18 +67,18 @@ import { SITE_CONFIG } from "@/config/site.config";
         >
           <a href="/docs" class="block h-full">
             <CardContent
-              className="flex h-full flex-col items-center justify-center space-y-4 p-8 text-center"
+              className="flex h-full flex-col items-center justify-center space-y-3 p-6 text-center sm:space-y-4 sm:p-8"
             >
               <div class="transition-transform group-hover:scale-110">
                 <img
                   src="/assets/static/obsidian.svg"
                   alt="Obsidian logo"
-                  class="mx-auto h-12 w-12 object-contain"
+                  class="mx-auto h-10 w-10 object-contain sm:h-12 sm:w-12"
                 />
               </div>
               <div>
-                <h3 class="mb-2 text-lg font-bold">Documentación</h3>
-                <p class="text-muted-foreground text-sm">Guías y recursos técnicos</p>
+                <h3 class="mb-1 text-base font-bold sm:mb-2 sm:text-lg">Documentación</h3>
+                <p class="text-muted-foreground text-xs sm:text-sm">Guías y recursos técnicos</p>
               </div>
             </CardContent>
           </a>
@@ -87,11 +89,13 @@ import { SITE_CONFIG } from "@/config/site.config";
           className="group hover:border-primary/50 hover:bg-primary/5 cursor-pointer transition-all"
         >
           <CardContent
-            className="flex h-full flex-col items-center justify-center space-y-4 p-8 text-center"
+            className="flex h-full flex-col items-center justify-center space-y-3 p-6 text-center sm:space-y-4 sm:p-8"
           >
-            <div class="bg-primary/10 rounded-full p-3 transition-transform group-hover:scale-110">
+            <div
+              class="bg-primary/10 rounded-full p-2.5 transition-transform group-hover:scale-110 sm:p-3"
+            >
               <svg
-                class="text-primary h-8 w-8"
+                class="text-primary h-6 w-6 sm:h-8 sm:w-8"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -105,8 +109,8 @@ import { SITE_CONFIG } from "@/config/site.config";
               </svg>
             </div>
             <div>
-              <h3 class="mb-2 text-lg font-bold">Proyectos</h3>
-              <p class="text-muted-foreground text-sm">Trabajos y experimentos</p>
+              <h3 class="mb-1 text-base font-bold sm:mb-2 sm:text-lg">Proyectos</h3>
+              <p class="text-muted-foreground text-xs sm:text-sm">Trabajos y experimentos</p>
             </div>
           </CardContent>
         </Card>
