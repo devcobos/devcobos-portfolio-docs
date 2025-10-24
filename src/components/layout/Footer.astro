@@ -3,17 +3,16 @@ import { SocialsList } from "@/constants/socials";
 import { SITE_CONFIG } from "@/config/site.config";
 ---
 
-<footer class="border-border bg-background/50 border-t backdrop-blur-sm">
-  <div class="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<footer class="border-border bg-background/50 mt-auto border-t backdrop-blur-sm">
+  <div class="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
     <!-- Brand/Copyright -->
-    <div class="text-muted-foreground text-xs sm:text-sm">
+    <div class="text-muted-foreground text-xs">
       © {new Date().getFullYear()}
-      <span class="hidden sm:inline"> {SITE_CONFIG.displayName}</span>
-      <span class="sm:hidden">DevCobos</span>
+      {SITE_CONFIG.displayName}
     </div>
 
     <!-- Social Links -->
-    <div class="flex items-center gap-2 sm:gap-4">
+    <div class="flex items-center gap-1 sm:gap-2">
       {
         SocialsList.map((social: any) => (
           <a
@@ -23,7 +22,7 @@ import { SITE_CONFIG } from "@/config/site.config";
             class="text-muted-foreground hover:text-foreground focus:text-foreground focus:ring-primary rounded-md p-1 transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none"
             aria-label={social.label}
           >
-            <social.icon class="h-4 w-4 sm:h-5 sm:w-5" />
+            <social.icon class="h-3 w-3 sm:h-4 sm:w-4" />
           </a>
         ))
       }

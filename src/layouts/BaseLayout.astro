@@ -2,6 +2,7 @@
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 
 import Header from "@/components/layout/Header.astro";
+import Footer from "@/components/layout/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import { SITE_CONFIG } from "@/config/site.config";
@@ -11,9 +12,14 @@ import "@/styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  showFooter?: boolean;
 }
 
-const { title = SITE_CONFIG.siteTitle, description = SITE_CONFIG.siteDescription } = Astro.props;
+const {
+  title = SITE_CONFIG.siteTitle,
+  description = SITE_CONFIG.siteDescription,
+  showFooter = true,
+} = Astro.props;
 
 const currentPath = Astro.url.pathname;
 const showBreadcrumbs = currentPath !== "/";
@@ -49,7 +55,7 @@ const showBreadcrumbs = currentPath !== "/";
     </script>
   </head>
 
-  <body class="font-sans">
+  <body class="flex min-h-screen flex-col font-sans">
     <!-- Fixed Header -->
     <Header />
 
@@ -66,10 +72,13 @@ const showBreadcrumbs = currentPath !== "/";
       )
     }
 
-    <!-- Main content with proper spacing for fixed header -->
-    <main class={`animate-fade-in ${showBreadcrumbs ? "pt-0" : "pt-14"}`}>
+    <!-- Main content with proper spacing for fixed header and flex-grow to push footer down -->
+    <main class={`animate-fade-in flex-1 ${showBreadcrumbs ? "pt-0" : "pt-14"}`}>
       <slot />
     </main>
+
+    <!-- Footer - stays at bottom -->
+    {showFooter && <Footer />}
 
     <!-- Vercel Analytics & Speed Insights -->
     <Analytics />
