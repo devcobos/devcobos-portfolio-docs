@@ -1,10 +1,11 @@
 ---
 import { SocialsList } from "@/constants/socials";
 import { SITE_CONFIG } from "@/config/site.config";
+import Section from "./Section.astro";
 ---
 
 <footer class="border-border bg-background/50 mt-auto border-t backdrop-blur-sm">
-  <div class="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+  <Section class="flex h-10 items-center justify-between">
     <!-- Brand/Copyright -->
     <div class="text-muted-foreground text-xs">
       © {new Date().getFullYear()}
@@ -27,5 +28,5 @@ import { SITE_CONFIG } from "@/config/site.config";
         ))
       }
     </div>
-  </div>
+  </Section>
 </footer>

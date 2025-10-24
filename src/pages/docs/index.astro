@@ -1,5 +1,5 @@
 ---
-import Footer from "@/components/layout/Footer.astro";
+import Section from "@/components/layout/Section.astro";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,7 +13,7 @@ const docs = (await getCollection("docs")).sort(
 ---
 
 <BaseLayout>
-  <div class="mx-auto mb-8 max-w-4xl px-4">
+  <Section>
     <!-- Barra de búsqueda -->
     <div class="mb-4">
       <div class="relative">
@@ -83,7 +83,7 @@ const docs = (await getCollection("docs")).sort(
       <p class="text-muted-foreground text-lg">No se encontraron resultados</p>
       <p class="text-muted-foreground mt-2 text-sm">Intenta con otros términos de búsqueda</p>
     </div>
-  </div>
+  </Section>
 </BaseLayout>
 
 <script>
