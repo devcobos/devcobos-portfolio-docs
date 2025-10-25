@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer.astro";
 import Hero from "@/components/layout/Hero.astro";
 import TechStack from "@/components/layout/TechStack";
 import { Card, CardContent } from "@/components/ui/card";
+import ScrollIndicator from "@/components/ui/ScrollIndicator.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { SITE_CONFIG } from "@/config/site.config";
 ---
@@ -118,6 +119,9 @@ import { SITE_CONFIG } from "@/config/site.config";
     <!-- Footer -->
     <Footer />
   </section>
+
+  <!-- Indicador de scroll -->
+  <ScrollIndicator />
 
   <script>
     import { initScrollSnap } from "@/scripts/scrollSnap";

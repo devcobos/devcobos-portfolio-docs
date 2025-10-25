@@ -9,9 +9,9 @@ const yearsOfExperience = getYearsOfExperience(SITE_CONFIG.experienceStartDate);
 ---
 
 <section
-  class="from-muted to-background relative flex min-h-[calc(100vh-3.5rem)] items-center justify-center overflow-hidden bg-gradient-to-b px-4 sm:px-6 lg:px-8"
+  class="from-muted to-background relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b px-4 pt-14 sm:px-6 lg:px-8"
 >
-  <div class="relative z-10 mx-auto w-full max-w-4xl space-y-8 text-center sm:space-y-10">
+  <div class="relative z-0 mx-auto w-full max-w-4xl space-y-8 text-center sm:space-y-10">
     <!-- Avatar -->
     <div class="relative inline-block">
       <div
@@ -65,14 +65,6 @@ const yearsOfExperience = getYearsOfExperience(SITE_CONFIG.experienceStartDate);
           </a>
         ))
       }
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="mt-12 animate-bounce sm:mt-16">
-      <ArrowBigDownDash
-        className="text-muted-foreground/50 mx-auto h-8 w-8 sm:h-10 sm:w-10"
-        strokeWidth="1"
-      />
     </div>
   </div>
 </section>
