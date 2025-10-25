@@ -1,4 +1,4 @@
-import { NavigationLink } from "@/components/ui/navigation-link";
+import type { ComponentProps } from "react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -6,6 +6,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { NAVIGATION_ITEMS_ARRAY } from "@/constants/navigation";
+import { cn } from "@/lib/utils";
 
 export default function Navigation() {
   return (
@@ -25,5 +26,21 @@ export default function Navigation() {
         ))}
       </NavigationMenuList>
     </NavigationMenu>
+  );
+}
+
+type LinkProps = ComponentProps<"a"> & {
+  href: string;
+};
+
+export function NavigationLink({ href, className, children, ...props }: LinkProps) {
+  return (
+    <a
+      href={href}
+      className={cn("text-foreground hover:text-primary px-4 py-2 transition-colors", className)}
+      {...props}
+    >
+      {children}
+    </a>
   );
 }
