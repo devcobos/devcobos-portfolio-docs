@@ -107,7 +107,15 @@ export function initScrollSnap(): void {
     if (targetSection) {
       // Obtener la altura del header (56px = h-14 en Tailwind)
       const headerHeight = 56;
-      const targetPosition = targetSection.offsetTop - (sectionIndex === 0 ? 0 : headerHeight);
+      let targetPosition: number;
+
+      if (sectionIndex === 0) {
+        // Para la sección hero, siempre ir al inicio absoluto
+        targetPosition = 0;
+      } else {
+        // Para otras secciones, considerar el header
+        targetPosition = targetSection.offsetTop - headerHeight;
+      }
 
       window.scrollTo({
         top: targetPosition,
