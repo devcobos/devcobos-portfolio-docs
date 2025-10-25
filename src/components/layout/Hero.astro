@@ -3,20 +3,19 @@ import { Badge } from "@/components/ui/badge";
 import { SocialsList, type SocialItem } from "@/constants/socials";
 import { getYearsOfExperience } from "@/lib/dateUtils";
 import { SITE_CONFIG } from "@/config/site.config";
-import { ArrowBigDownDash } from "lucide-react";
 
 const yearsOfExperience = getYearsOfExperience(SITE_CONFIG.experienceStartDate);
 ---
 
 <section
-  class="from-muted to-background relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b px-4 pt-14 sm:px-6 lg:px-8"
+  class="from-muted to-background flex h-full w-full items-center justify-center bg-gradient-to-b"
 >
-  <div class="relative z-0 mx-auto w-full max-w-4xl space-y-8 text-center sm:space-y-10">
+  <div
+    class="min-h-screen w-full space-y-8 px-4 py-20 text-center sm:space-y-10 sm:px-6 sm:py-24 lg:px-8 lg:py-28"
+  >
     <!-- Avatar -->
-    <div class="relative inline-block">
-      <div
-        class="from-primary/80 to-primary relative rounded-full bg-gradient-to-br p-1 shadow-2xl"
-      >
+    <div class="inline-block">
+      <div class="from-primary/80 to-primary rounded-full bg-gradient-to-br p-1 shadow-2xl">
         <img
           src={SITE_CONFIG.avatar}
           alt={SITE_CONFIG.displayName}
