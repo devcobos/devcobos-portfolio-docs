@@ -2,6 +2,7 @@
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
+import SEO from "@/components/SEO.astro";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import { SITE_CONFIG } from "@/config/site.config";
@@ -13,12 +14,18 @@ interface Props {
   title?: string;
   description?: string;
   showFooter?: boolean;
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
 }
 
 const {
   title = SITE_CONFIG.siteTitle,
   description = SITE_CONFIG.siteDescription,
   showFooter = true,
+  image,
+  type = "website",
+  noindex = false,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -26,16 +33,18 @@ const showBreadcrumbs = currentPath !== "/";
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- SEO Component -->
+    <SEO title={title} description={description} image={image} type={type} noindex={noindex} />
 
-    <title>{title}</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Theme initialization -->
     <script is:inline>

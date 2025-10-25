@@ -1,0 +1,11 @@
+/* TEAM */
+Developer: Joaquín León Cobos (DevCobos)
+Contact: https://github.com/devcobos
+Location: Sevilla, España
+
+/* SITE */
+Last update: 2025/10/25
+Language: Spanish / English
+Doctype: HTML5
+IDE: Kiro, VS Code
+Technologies: Astro, React, TypeScript, Tailwind CSS, shadcn/ui

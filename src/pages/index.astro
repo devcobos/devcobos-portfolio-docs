@@ -6,9 +6,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import ScrollIndicator from "@/components/layout/ScrollIndicator.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { SITE_CONFIG } from "@/config/site.config";
+
+const seoTitle = "DevCobos - Joaquín León Cobos | Desarrollador Web Frontend";
+const seoDescription =
+  "DevCobos es el portfolio de Joaquín León Cobos, desarrollador web especializado en React, TypeScript, Astro y tecnologías modernas. Creando experiencias digitales únicas desde Sevilla, España.";
 ---
 
-<BaseLayout showFooter={false}>
+<BaseLayout title={seoTitle} description={seoDescription} showFooter={false}>
   <!-- Hero Section -->
   <section id="hero" class="min-h-[calc(100vh-3.5rem)]">
     <Hero />

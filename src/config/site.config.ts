@@ -15,9 +15,24 @@ export const SITE_CONFIG = {
   experienceStartDate: "05/2022", // MM/YYYY
 
   // Site metadata
-  siteTitle: "DevCobos",
-  siteDescription: "Developer portfolio and documentation",
+  siteTitle: "DevCobos - Joaquín León Cobos | Desarrollador Web",
+  siteDescription:
+    "DevCobos - Portfolio de Joaquín León Cobos, desarrollador web especializado en React, TypeScript y tecnologías modernas. Experiencias digitales únicas desde Sevilla, España.",
   siteUrl: "https://devcobos.vercel.app",
+
+  // SEO Keywords
+  keywords: [
+    "DevCobos",
+    "Joaquín León Cobos",
+    "desarrollador web",
+    "React developer",
+    "TypeScript",
+    "frontend developer",
+    "Sevilla",
+    "España",
+    "portfolio",
+    "web development",
+  ],
 
   // Social links
   social: {
