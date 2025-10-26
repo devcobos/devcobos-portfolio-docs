@@ -84,6 +84,8 @@ export function initScrollSnap(): void {
 
   // Si es móvil, no aplicar ningún comportamiento de scroll snap
   if (isMobileDevice()) {
+    // En móvil, asegurar que el body tenga scroll normal
+    document.body.style.overflow = "auto";
     return;
   }
 
@@ -113,8 +115,8 @@ export function initScrollSnap(): void {
         // Para la sección hero, siempre ir al inicio absoluto
         targetPosition = 0;
       } else {
-        // Para otras secciones, considerar el header
-        targetPosition = targetSection.offsetTop - headerHeight;
+        // Para la sección de contenido, scroll hasta el final para mostrar el footer
+        targetPosition = document.documentElement.scrollHeight - window.innerHeight;
       }
 
       window.scrollTo({
@@ -199,6 +201,8 @@ export function initScrollSnap(): void {
   // Event listeners - solo en desktop
   window.addEventListener("wheel", handleWheel, { passive: false });
   window.addEventListener("keydown", handleKeyDown);
+
+  // Solo ocultar overflow en desktop, en móvil permitir scroll normal
   document.body.style.overflow = "hidden";
 
   // Inicializar el indicador en la sección correcta

@@ -7,55 +7,38 @@ import ScrollIndicator from "@/components/layout/ScrollIndicator.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { SITE_CONFIG } from "@/config/site.config";
 
-const seoTitle = "DevCobos - Joaquín León Cobos | Desarrollador Web Frontend";
-const seoDescription =
-  "DevCobos es el portfolio de Joaquín León Cobos, desarrollador web especializado en React, TypeScript, Astro y tecnologías modernas. Creando experiencias digitales únicas desde Sevilla, España.";
+import { LinkCard } from "@/components/layout/LinkCard";
+import { BookOpen } from "lucide-react";
+import GithubIcon from "public/assets/static/github.svg";
 ---
 
-<BaseLayout title={seoTitle} description={seoDescription} showFooter={false}>
+<BaseLayout showFooter={false}>
   <!-- Hero Section -->
   <section id="hero" class="min-h-[calc(100vh-3.5rem)]">
     <Hero />
   </section>
 
   <!-- Bento + Footer Section -->
-  <section id="content" class="flex h-screen flex-col">
-    <!-- Main content with proper spacing -->
-    <main class="mx-auto flex flex-1 items-center">
-      <!-- Bento Grid -->
+  <section id="content" class="relative flex min-h-screen flex-col lg:pt-12">
+    <!-- Bento Grid Container -->
+    <div class="flex flex-1 items-center justify-center">
       <section
         id="bento"
         class="mx-auto grid w-full max-w-6xl scroll-mt-10 grid-cols-1 gap-4 px-4 sm:gap-6 sm:px-6 md:grid-cols-3 lg:px-8"
       >
         <!-- About -->
-        <Card
-          className="group hover:border-primary/50 hover:bg-primary/5 cursor-pointer transition-all md:col-span-2"
-        >
-          <a href="/about" class="block h-full">
-            <CardContent className="flex items-center gap-4 p-6 sm:gap-6 sm:p-8">
-              <div class="flex-1 text-left">
-                <div class="mb-2 flex items-center gap-2 sm:mb-3">
-                  <h3 class="text-xl font-bold sm:text-2xl">Sobre mí</h3>
-                  <svg
-                    class="text-muted-foreground h-4 w-4 transition-transform group-hover:translate-x-1 sm:h-5 sm:w-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
-                </div>
-                <p class="text-muted-foreground text-sm leading-relaxed sm:text-base">
-                  {SITE_CONFIG.description}
-                </p>
+        <LinkCard href="/about" className="md:col-span-2" client:load>
+          <div class="flex items-center gap-4 sm:gap-6">
+            <div class="flex-1 text-left">
+              <div class="mb-2 sm:mb-3">
+                <h3 class="text-xl font-bold sm:text-2xl">Sobre mí</h3>
               </div>
-            </CardContent>
-          </a>
-        </Card>
+              <p class="text-muted-foreground text-sm leading-relaxed sm:text-base">
+                {SITE_CONFIG.description}
+              </p>
+            </div>
+          </div>
+        </LinkCard>
 
         <!-- Tech Stack -->
         <Card className="hover:border-primary/50 transition-all md:row-span-2">
@@ -65,63 +48,45 @@ const seoDescription =
         </Card>
 
         <!-- Docs -->
-        <Card
-          className="group hover:border-primary/50 hover:bg-primary/5 cursor-pointer transition-all"
-        >
-          <a href="/docs" class="block h-full">
-            <CardContent
-              className="flex h-full flex-col items-center justify-center space-y-3 p-6 text-center sm:space-y-4 sm:p-8"
-            >
-              <div class="transition-transform group-hover:scale-110">
-                <img
-                  src="/assets/static/obsidian.svg"
-                  alt="Obsidian logo"
-                  class="mx-auto h-10 w-10 object-contain sm:h-12 sm:w-12"
-                />
-              </div>
-              <div>
-                <h3 class="mb-1 text-base font-bold sm:mb-2 sm:text-lg">Documentación</h3>
-                <p class="text-muted-foreground text-xs sm:text-sm">Guías y recursos técnicos</p>
-              </div>
-            </CardContent>
-          </a>
-        </Card>
-
-        <!-- Projects -->
-        <Card
-          className="group hover:border-primary/50 hover:bg-primary/5 cursor-pointer transition-all"
-        >
-          <CardContent
-            className="flex h-full flex-col items-center justify-center space-y-3 p-6 text-center sm:space-y-4 sm:p-8"
+        <LinkCard href="/docs" client:load>
+          <div
+            class="flex h-full flex-col items-center justify-center space-y-3 text-center sm:space-y-4"
           >
             <div
               class="bg-primary/10 rounded-full p-2.5 transition-transform group-hover:scale-110 sm:p-3"
             >
-              <svg
-                class="text-primary h-6 w-6 sm:h-8 sm:w-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                ></path>
-              </svg>
+              <BookOpen className="text-primary h-6 w-6 sm:h-8 sm:w-8" client:load />
+            </div>
+            <div>
+              <h3 class="mb-1 text-base font-bold sm:mb-2 sm:text-lg">Documentación</h3>
+              <p class="text-muted-foreground text-xs sm:text-sm">Guías y recursos técnicos</p>
+            </div>
+          </div>
+        </LinkCard>
+
+        <!-- Projects -->
+        <LinkCard href={SITE_CONFIG.social.github} client:load>
+          <div
+            class="flex h-full flex-col items-center justify-center space-y-3 text-center sm:space-y-4"
+          >
+            <div
+              class="bg-primary/10 rounded-full p-2.5 transition-transform group-hover:scale-110 sm:p-3"
+            >
+              <GithubIcon class="text-primary h-6 w-6 sm:h-8 sm:w-8" />
             </div>
             <div>
               <h3 class="mb-1 text-base font-bold sm:mb-2 sm:text-lg">Proyectos</h3>
-              <p class="text-muted-foreground text-xs sm:text-sm">Trabajos y experimentos</p>
+              <p class="text-muted-foreground text-xs sm:text-sm">Ver en GitHub</p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </LinkCard>
       </section>
-    </main>
+    </div>
 
-    <!-- Footer -->
-    <Footer />
+    <!-- Footer positioned at bottom -->
+    <div class="mt-auto">
+      <Footer />
+    </div>
   </section>
 
   <!-- Indicador de scroll -->

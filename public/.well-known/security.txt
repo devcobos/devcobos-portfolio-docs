@@ -1,4 +1,0 @@
-Contact: https://github.com/devcobos
-Contact: https://www.linkedin.com/in/leoncobos
-Preferred-Languages: es, en
-Canonical: https://devcobos.vercel.app/.well-known/security.txt
